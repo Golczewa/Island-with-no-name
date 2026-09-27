@@ -15,7 +15,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(raylib)
 
-add_executable(island_with_no_name src/main.cpp)
+add_executable(island_with_no_name src/main.cpp
+        src/player.cpp
+        src/player.h)
 
 target_link_libraries(island_with_no_name
         raylib
