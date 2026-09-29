@@ -26,20 +26,20 @@ void main()
     // CRT curve (slight barrel distortion)
     vec2 cc = uv - 0.5;
     float dist = dot(cc, cc) * 0.1;
-    uv = uv + cc * (1.0 + dist) * dist;
+    //uv = uv + cc * (1.0 + dist) * dist;
     
     // Vignette effect
     float vignette = smoothstep(0.7, 0.4, length(cc));
     
     // RGB shift for chromatic aberration
-    float shift = 0.002;
+    float shift = 0.001;
     float r = texture(texture0, uv + vec2(shift, 0.0)).r;
     float g = texture(texture0, uv).g;
     float b = texture(texture0, uv - vec2(shift, 0.0)).b;
     
     // Combine effects
     color = vec4(r, g, b, 1.0);
-    color.rgb *= vignette;
+    //color.rgb *= vignette;
     color.rgb -= scanline;
     
     // Subtle flicker
