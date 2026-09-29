@@ -11,15 +11,14 @@
 class Player {
     Vector2 position={.x = 50,.y = 50};
     Texture2D sprite=LoadTexture("assets/sprites/guy.png");
-    const int frames_count=5;
+    const int frames_count=9;
     Rectangle frames={0,0,static_cast<float>(sprite.width)/frames_count,static_cast<float>(sprite.height)};
-    Animation idle=Animation(0,0,frames_count,frames,sprite);
-    Animation walk_down=Animation(1,2,frames_count,frames,sprite);
-    Animation walk_up=Animation(3,4,frames_count,frames,sprite);
+    AnimatedSprite animated_sprite=AnimatedSprite(frames_count,frames,sprite);
     float speed=1;
 
 
 public:
+    Player();
     ~Player();
     void move(float x,float y);
     void draw();

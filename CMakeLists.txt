@@ -19,6 +19,7 @@ add_executable(island_with_no_name src/main.cpp
         src/player.cpp
         src/player.h
         src/tools/animation.h
+        src/tools/animation.cpp
 )
 
 target_link_libraries(island_with_no_name
