@@ -9,7 +9,7 @@
 
 
 class Player {
-    Vector2 position={.x = 50,.y = 50};
+    Vector2 position={.x =0,.y = 0};
     Texture2D sprite=LoadTexture("assets/sprites/guy.png");
     const int frames_count=9;
     Rectangle frames={0,0,static_cast<float>(sprite.width)/frames_count,static_cast<float>(sprite.height)};

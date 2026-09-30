@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "player.h"
+#include "tools/tileMap.h"
 
 int main(){
     const int screenWidth = 1980;
@@ -14,12 +15,28 @@ int main(){
     RenderTexture2D target=LoadRenderTexture(gameWidth,gameHeight);
     SetTextureFilter(target.texture, TEXTURE_FILTER_POINT);
     Shader crt=LoadShader(0,"assets/shaders/crt.fs");
+    std::vector<int> map={
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,
+        0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+        2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+      };
+    auto tilemap=std::make_unique<TileMap>("assets/sprites/tile_test.png",3,map);
     auto player=std::make_unique<Player>();
     while (!WindowShouldClose())
     {
         BeginTextureMode(target);
             ClearBackground(WHITE);
             player->movement();
+            tilemap->draw();
             player->draw();
         EndTextureMode();
         float scale = std::min(
