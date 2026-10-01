@@ -11,12 +11,13 @@
 
 class TileMap {
     std::string sprite_path;
-    Texture2D sprite=LoadTexture(sprite_path.c_str());
+    Texture2D sprite;
     int tile_number;
     std::vector<int> map;
-    Rectangle tiles={0,0,static_cast<float>(sprite.width)/tile_number,static_cast<float>(sprite.height)};
+    Rectangle tiles;
 public:
     TileMap(const std::string& path,int number,std::vector<int>& _map);
+    ~TileMap();
     void draw();
 };
 

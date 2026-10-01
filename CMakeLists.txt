@@ -20,8 +20,13 @@ add_executable(island_with_no_name src/main.cpp
         src/player.h
         src/tools/animation.h
         src/tools/animation.cpp
-        src/tools/tileMap.cpp
-        src/tools/tileMap.h
+        src/map/tileMap.cpp
+        src/map/tileMap.h
+        src/map/maps.h
+        src/map/room.cpp
+        src/map/room.h
+        src/map/prop.cpp
+        src/map/prop.h
 )
 
 target_link_libraries(island_with_no_name

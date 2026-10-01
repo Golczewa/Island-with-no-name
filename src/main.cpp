@@ -1,13 +1,14 @@
 #include <iostream>
 #include <memory>
 
+#include "map/maps.h"
 #include "raylib.h"
 #include "player.h"
-#include "tools/tileMap.h"
+#include "map/tileMap.h"
 
 int main(){
-    const int screenWidth = 1980;
-    const int screenHeight = 1040;
+    const int screenWidth = 930;
+    const int screenHeight = 520;
     const int gameWidth = 256;
     const int gameHeight = 192;
     InitWindow(screenWidth, screenHeight, "Island with no name");
@@ -15,21 +16,8 @@ int main(){
     RenderTexture2D target=LoadRenderTexture(gameWidth,gameHeight);
     SetTextureFilter(target.texture, TEXTURE_FILTER_POINT);
     Shader crt=LoadShader(0,"assets/shaders/crt.fs");
-    std::vector<int> map={
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,
-        0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-        2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
-      };
-    auto tilemap=std::make_unique<TileMap>("assets/sprites/tile_test.png",3,map);
+    auto maps=std::make_unique<Maps>();
+    auto tilemap=std::make_unique<TileMap>("assets/sprites/tile_test.png",3,maps->map1);
     auto player=std::make_unique<Player>();
     while (!WindowShouldClose())
     {
