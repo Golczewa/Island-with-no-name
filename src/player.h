@@ -9,14 +9,19 @@
 
 
 class Player {
-    Vector2 position={.x =0,.y = 0};
+    Vector2 position={.x =128,.y = 128};
     Texture2D sprite=LoadTexture("assets/sprites/guy.png");
     const int frames_count=9;
     Rectangle frames={0,0,static_cast<float>(sprite.width)/frames_count,static_cast<float>(sprite.height)};
     AnimatedSprite animated_sprite=AnimatedSprite(frames_count,frames,sprite);
     float speed=1;
-
-
+    enum Stance {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    };
+    Stance stance=DOWN;
 public:
     Player();
     ~Player();
