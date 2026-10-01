@@ -16,7 +16,7 @@ class TileMap {
     std::vector<int> map;
     Rectangle tiles;
 public:
-    TileMap(const std::string& path,int number,std::vector<int>& _map);
+    TileMap(const std::string path,int number,std::vector<int> _map);
     ~TileMap();
     void draw();
 };

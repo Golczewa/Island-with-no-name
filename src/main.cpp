@@ -4,11 +4,12 @@
 #include "map/maps.h"
 #include "raylib.h"
 #include "player.h"
+#include "map/room.h"
 #include "map/tileMap.h"
 
 int main(){
-    const int screenWidth = 930;
-    const int screenHeight = 520;
+    const int screenWidth = 2560;
+    const int screenHeight = 1440;
     const int gameWidth = 256;
     const int gameHeight = 192;
     InitWindow(screenWidth, screenHeight, "Island with no name");
@@ -16,15 +17,16 @@ int main(){
     RenderTexture2D target=LoadRenderTexture(gameWidth,gameHeight);
     SetTextureFilter(target.texture, TEXTURE_FILTER_POINT);
     Shader crt=LoadShader(0,"assets/shaders/crt.fs");
-    auto maps=std::make_unique<Maps>();
-    auto tilemap=std::make_unique<TileMap>("assets/sprites/tile_test.png",3,maps->map1);
+    MapLibrary map_library;
+    auto maps=std::make_unique<MapData>();
+    auto room1=Room(std::move(map_library.map1));
     auto player=std::make_unique<Player>();
     while (!WindowShouldClose())
     {
         BeginTextureMode(target);
             ClearBackground(WHITE);
             player->movement();
-            tilemap->draw();
+            room1.draw();
             player->draw();
         EndTextureMode();
         float scale = std::min(

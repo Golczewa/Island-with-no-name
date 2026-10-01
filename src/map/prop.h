@@ -13,7 +13,9 @@ class Prop {
 	Vector2 position;
 	Texture2D sprite;
 public:
-	Prop(std::string sprite_path,Vector2 pos);
+	Prop(Vector2 pos,const std::string& sprite_path="");
+	~Prop();
+	void draw();
 };
 
 

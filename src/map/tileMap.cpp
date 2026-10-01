@@ -7,7 +7,7 @@
 #include <iostream>
 #include <stdexcept>
 
-TileMap::TileMap(const std::string& path,int number,std::vector<int>& _map)
+TileMap::TileMap(const std::string path,int number,std::vector<int> _map)
     :sprite_path(path),tile_number(number),map(_map) {
     sprite=LoadTexture(sprite_path.c_str());
     tiles={0,0,static_cast<float>(sprite.width)/tile_number,static_cast<float>(sprite.height)};
