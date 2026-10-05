@@ -27,6 +27,8 @@ add_executable(island_with_no_name src/main.cpp
         src/map/room.h
         src/map/prop.cpp
         src/map/prop.h
+        src/tools/collisionWorld.cpp
+        src/tools/collisionWorld.h
 )
 
 target_link_libraries(island_with_no_name
