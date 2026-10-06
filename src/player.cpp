@@ -13,49 +13,50 @@ Player::Player() {
     animated_sprite.create_animation("walk_up",3,4);
     animated_sprite.create_animation("walk_right",5,6);
     animated_sprite.create_animation("walk_left",7,8);
+    CollisionWorld::add_collider(&collision);
 
 }
 
 Player::~Player() {
     UnloadTexture(sprite);
-}
+    CollisionWorld::remove_collider(&collision);
 
-void Player::move(const float x, const float y) {
-    position.x+=x;
-    position.y+=y;
 }
 
 void Player::draw() {
     DrawTextureRec(sprite,frames,position,WHITE);
 }
 
-void Player::movement() {
+void Player::process() {
     bool something_pressed=false;
     if (IsKeyDown(KEY_UP)) {
-        move(0,-speed);
+        velocity.y=-speed;
         something_pressed=true;
         animated_sprite.play_animation("walk_up");
         stance=UP;
     }
     if (IsKeyDown(KEY_DOWN)){
-        move(0,speed);
+        velocity.y=speed;
         something_pressed=true;
         animated_sprite.play_animation("walk_down");
         stance=DOWN;
     }
     if (IsKeyDown(KEY_LEFT)) {
-        move(-speed,0);
+        velocity.x=-speed;
         something_pressed=true;
         animated_sprite.play_animation("walk_left");
         stance=LEFT;
     }
     if (IsKeyDown(KEY_RIGHT)) {
         something_pressed=true;
-        move(speed,0);
+        velocity.x=speed;
         animated_sprite.play_animation("walk_right");
         stance=RIGHT;
     }
+
     if (!something_pressed){
+        velocity.x=0;
+        velocity.y=0;
         switch (stance) {
             case UP:
                 animated_sprite.play_animation("idle_up");
@@ -72,5 +73,7 @@ void Player::movement() {
         }
 
     }
+    position.x+=velocity.x;
+    position.y+=velocity.y;
 }
 

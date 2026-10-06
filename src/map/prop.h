@@ -7,11 +7,14 @@
 #include <string>
 
 #include "raylib.h"
+#include "../tools/collisionWorld.h"
 
 
 class Prop {
 	Vector2 position;
 	Texture2D sprite;
+    Collision collision={{position.x,position.y,16,16},LAYER_0,LAYER_0,true,true,this};
+
 public:
 	Prop(Vector2 pos,const std::string& sprite_path="");
 	~Prop();

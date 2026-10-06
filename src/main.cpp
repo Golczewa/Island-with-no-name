@@ -25,7 +25,7 @@ int main(){
     {
         BeginTextureMode(target);
             ClearBackground(WHITE);
-            player->movement();
+            player->process();
             room1.draw();
             player->draw();
         EndTextureMode();

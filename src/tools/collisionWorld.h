@@ -5,14 +5,15 @@
 #ifndef ISLAND_WITH_NO_NAME_COLLISIONWORLD_H
 #define ISLAND_WITH_NO_NAME_COLLISIONWORLD_H
 #include <unordered_set>
+#include <vector>
 
 #include "raylib.h"
 
-enum CollisionLayers {
-    LAYER_0=0,
-    LAYER_1=1,
-    LAYER_2=2,
-    LAYER_3=3
+enum CollisionLayers{
+    LAYER_0=1<<0,
+    LAYER_1=1<<1,
+    LAYER_2=1<<2,
+    LAYER_3=1<<3
 };
 
 struct Collision {
@@ -28,10 +29,11 @@ struct Collision {
 
 class CollisionWorld {
     static constexpr int max_colliders = 128;
-    int collisions_number=0;
 public:
     inline static std::unordered_set<Collision*> collisions;
-    void add_collider(const Collision* collision);
+    static void add_collider(Collision* collision);
+    static void remove_collider(Collision* collision);
+    static std::vector<Collision*> get_colliders(Collision* collision);
 };
 
 
