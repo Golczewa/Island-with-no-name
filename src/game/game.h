@@ -14,14 +14,14 @@ class Player;
 class Game {
     MapLibrary map_library;
     std::unique_ptr<Player> player;
-    std::unique_ptr<Room> curr_room;
     MapData get_map(int room_id);
 public:
+    std::unique_ptr<Room> curr_room;
     Game();
     ~Game();
     void process();
     void draw();
-    void change_room(int room_id,Vector2 new_position);
+    void change_room(int room_id);
 };
 
 

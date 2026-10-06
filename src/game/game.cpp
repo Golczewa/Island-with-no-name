@@ -29,7 +29,10 @@ MapData Game::get_map(int room_id) {
     throw std::invalid_argument("Unknown room id");
 }
 
-void Game::change_room(int room_id,Vector2 new_position) {
+void Game::change_room(int room_id) {
+    if (room_id==-1) {
+        return;
+    }
     curr_room=std::make_unique<Room>(get_map(room_id));
-    player->teleport_to(new_position);
 }
+

@@ -12,9 +12,9 @@ class Room {
     int id;
     std::unique_ptr<TileMap> tile_map;
     std::vector<std::unique_ptr<Prop>> props;
-    Paths paths;
 
 public:
+    Paths paths;
     Room(const MapData& map_data);
     void draw();
 };

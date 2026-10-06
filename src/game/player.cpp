@@ -3,6 +3,7 @@
 //
 
 #include "player.h"
+
 #include "game.h"
 
 Player::Player(Game* game_) {
@@ -84,12 +85,47 @@ void Player::process() {
 }
 
 void Player::teleport_to(Vector2 pos) {
-    position.x=pos.x;
-    position.y=pos.y;
+    velocity.x=0;
+    velocity.y=0;
+    collision.shape.x=pos.x;
+    collision.shape.y=pos.y;
 }
 
 void Player::move_to_room() {
     if (0<position.x and position.x<4) {
-        game->change_room(2,{64,64});
+        const int next_room = game->curr_room->paths.left_room_id;
+        if (next_room == -1) {
+            return;
+        }
+        game->change_room(next_room);
+        teleport_to({224, position.y});
+        return;
+    }
+    if (236<position.x and position.x<240) {
+        const int next_room = game->curr_room->paths.right_room_id;
+        if (next_room == -1) {
+            return;
+        }
+        game->change_room(next_room);
+        teleport_to({16, position.y});
+        return;
+    }
+    if (0<position.y and position.y<4) {
+        const int next_room = game->curr_room->paths.upper_room_id;
+        if (next_room == -1) {
+            return;
+        }
+        game->change_room(next_room);
+        teleport_to({position.x, 160});
+        return;
+    }
+    if (172<position.y and position.y<176) {
+        const int next_room = game->curr_room->paths.right_room_id;
+        if (next_room == -1) {
+            return;
+        }
+        game->change_room(next_room);
+        teleport_to({position.x,16});
+        return;
     }
 }
