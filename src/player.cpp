@@ -29,6 +29,8 @@ void Player::draw() {
 
 void Player::process() {
     bool something_pressed=false;
+    velocity.x=0;
+    velocity.y=0;
     if (IsKeyDown(KEY_UP)) {
         velocity.y=-speed;
         something_pressed=true;
@@ -73,7 +75,8 @@ void Player::process() {
         }
 
     }
-    position.x+=velocity.x;
-    position.y+=velocity.y;
+    velocity = CollisionWorld::move_and_slide(&collision, velocity);
+    position.x = collision.shape.x;
+    position.y = collision.shape.y;
 }
 
