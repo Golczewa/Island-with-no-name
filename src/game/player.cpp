@@ -3,8 +3,9 @@
 //
 
 #include "player.h"
+#include "game.h"
 
-Player::Player() {
+Player::Player(Game* game_) {
     animated_sprite.create_animation("idle_down",0,0);
     animated_sprite.create_animation("idle_up",3,3);
     animated_sprite.create_animation("idle_right",6,6);
@@ -14,6 +15,7 @@ Player::Player() {
     animated_sprite.create_animation("walk_right",5,6);
     animated_sprite.create_animation("walk_left",7,8);
     CollisionWorld::add_collider(&collision);
+    game=game_;
 
 }
 
@@ -28,6 +30,7 @@ void Player::draw() {
 }
 
 void Player::process() {
+    move_to_room();
     bool something_pressed=false;
     velocity.x=0;
     velocity.y=0;
@@ -80,3 +83,13 @@ void Player::process() {
     position.y = collision.shape.y;
 }
 
+void Player::teleport_to(Vector2 pos) {
+    position.x=pos.x;
+    position.y=pos.y;
+}
+
+void Player::move_to_room() {
+    if (0<position.x and position.x<4) {
+        game->change_room(2,{64,64});
+    }
+}

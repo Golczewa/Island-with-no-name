@@ -16,8 +16,8 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(raylib)
 
 add_executable(island_with_no_name src/main.cpp
-        src/player.cpp
-        src/player.h
+        src/game/player.cpp
+        src/game/player.h
         src/tools/animation.h
         src/tools/animation.cpp
         src/map/tileMap.cpp
@@ -29,6 +29,8 @@ add_executable(island_with_no_name src/main.cpp
         src/map/prop.h
         src/tools/collisionWorld.cpp
         src/tools/collisionWorld.h
+        src/game/game.cpp
+        src/game/game.h
 )
 
 target_link_libraries(island_with_no_name

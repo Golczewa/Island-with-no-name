@@ -5,8 +5,10 @@
 #ifndef ISLAND_WITH_NO_NAME_PLAYER_H
 #define ISLAND_WITH_NO_NAME_PLAYER_H
 #include "raylib.h"
-#include "tools/animation.h"
-#include "tools/collisionWorld.h"
+#include "../tools/animation.h"
+#include "../tools/collisionWorld.h"
+
+class Game;
 
 class Player {
     Vector2 position={.x =128,.y = 128};
@@ -24,11 +26,14 @@ class Player {
         RIGHT
     };
     Stance stance=DOWN;
+    Game* game;
 public:
-    Player();
+    Player(Game* game_);
     ~Player();
     void draw();
     void process();
+    void teleport_to(Vector2 pos);
+    void move_to_room();
 
 };
 

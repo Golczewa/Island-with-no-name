@@ -3,7 +3,8 @@
 
 #include "map/maps.h"
 #include "raylib.h"
-#include "player.h"
+#include "game/game.h"
+#include "game/player.h"
 #include "map/room.h"
 #include "map/tileMap.h"
 
@@ -17,17 +18,13 @@ int main(){
     RenderTexture2D target=LoadRenderTexture(gameWidth,gameHeight);
     SetTextureFilter(target.texture, TEXTURE_FILTER_POINT);
     Shader crt=LoadShader(0,"assets/shaders/crt.fs");
-    MapLibrary map_library;
-    auto maps=std::make_unique<MapData>();
-    auto room1=Room(std::move(map_library.map1));
-    auto player=std::make_unique<Player>();
+    Game game;
     while (!WindowShouldClose())
     {
         BeginTextureMode(target);
             ClearBackground(WHITE);
-            player->process();
-            room1.draw();
-            player->draw();
+            game.process();
+            game.draw();
         EndTextureMode();
         float scale = std::min(
         screenWidth / gameWidth,
