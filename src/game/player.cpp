@@ -120,7 +120,7 @@ void Player::move_to_room() {
         return;
     }
     if (172<position.y and position.y<176) {
-        const int next_room = game->curr_room->paths.right_room_id;
+        const int next_room = game->curr_room->paths.down_room_id;
         if (next_room == -1) {
             return;
         }
