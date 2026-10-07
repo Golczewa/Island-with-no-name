@@ -129,3 +129,7 @@ void Player::move_to_room() {
         return;
     }
 }
+
+void Player::take_damage(int dmg) {
+    health-=dmg;
+}

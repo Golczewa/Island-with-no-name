@@ -11,6 +11,8 @@
 class Game;
 
 class Player {
+    const int max_health=6;
+    int health=max_health;
     Vector2 position={.x =128,.y = 128};
     Vector2 velocity={0,0};
     Collision collision={{position.x,position.y,16,16},LAYER_0,LAYER_0,true,true,this};
@@ -34,6 +36,7 @@ public:
     void process();
     void teleport_to(Vector2 pos);
     void move_to_room();
+    void take_damage(int dmg);
 
 };
 

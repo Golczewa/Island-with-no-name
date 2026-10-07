@@ -1,12 +1,8 @@
 #include <iostream>
-#include <memory>
 
-#include "map/maps.h"
 #include "raylib.h"
 #include "game/game.h"
-#include "game/player.h"
-#include "map/room.h"
-#include "map/tileMap.h"
+
 
 int main(){
     const int screenWidth = 1920;
