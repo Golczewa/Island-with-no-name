@@ -7,11 +7,8 @@
 #include "enemy.h"
 
 
-class TestEnemy: Enemy {
+class TestEnemy: public Enemy {
 	const int max_health=6;
-	int health=max_health;
-	Texture2D sprite=LoadTexture("assets/sprites/test_enemy.png");
-	Vector2 position{};
 public:
 	TestEnemy(Vector2 pos);
 	void process() override;

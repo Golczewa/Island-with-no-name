@@ -13,6 +13,6 @@ Enemy::~Enemy() {
 }
 
 void Enemy::draw() {
-	DrawTexture(sprite,poition.x,poition.y,WHITE);
+	DrawTexture(sprite,position.x,position.y,WHITE);
 }
 

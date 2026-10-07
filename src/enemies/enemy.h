@@ -8,9 +8,10 @@
 
 
 class Enemy {
+protected:
 	int health=0;
-	Vector2 poition;
-	Texture2D sprite={0,0};
+	Vector2 position{};
+	Texture2D sprite{};
 public:
 	virtual ~Enemy();
 	virtual void process()=0;

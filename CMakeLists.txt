@@ -31,10 +31,12 @@ add_executable(island_with_no_name src/main.cpp
         src/tools/collisionWorld.h
         src/game/game.cpp
         src/game/game.h
-        src/game/enemies/enemy.cpp
-        src/game/enemies/enemy.h
-        src/game/enemies/testEnemy.cpp
-        src/game/enemies/testEnemy.h
+        src/enemies/enemy.cpp
+        src/enemies/enemy.h
+        src/enemies/testEnemy.cpp
+        src/enemies/testEnemy.h
+        src/enemies/enemyFactory.cpp
+        src/enemies/enemyFactory.h
 )
 
 target_link_libraries(island_with_no_name

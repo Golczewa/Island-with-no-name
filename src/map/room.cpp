@@ -9,6 +9,9 @@ Room::Room(const MapData& map_data) {
     for (auto& prop: map_data.props) {
         props.push_back(std::make_unique<Prop>(prop.first,prop.second));
     }
+    for (auto& enemy:map_data.enemies) {
+        enemies.push_back(EnemyFactory::create_enemy(enemy.first,enemy.second));
+    }
     id=map_data.id;
     paths=map_data.paths;
 }
@@ -17,5 +20,14 @@ void Room::draw() {
     tile_map->draw();
     for (auto& prop :props) {
         prop->draw();
+    }
+    for (auto& enemy:enemies) {
+        enemy->draw();
+    }
+}
+
+void Room::process() {
+    for (auto& enemy:enemies) {
+        enemy->process();
     }
 }

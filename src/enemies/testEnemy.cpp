@@ -10,4 +10,6 @@ void TestEnemy::process() {
 
 TestEnemy::TestEnemy(Vector2 pos) {
 	position=pos;
+	health=max_health;
+	sprite=LoadTexture("assets/sprites/test_enemy.png");
 }

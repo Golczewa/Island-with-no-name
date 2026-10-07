@@ -13,6 +13,7 @@ Game::~Game() = default;
 
 void Game::process() {
     player->process();
+    curr_room->process();
 }
 
 void Game::draw() {
