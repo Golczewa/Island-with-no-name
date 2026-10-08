@@ -12,13 +12,14 @@
 
 class Room {
     int id;
+    Player *player;
     std::unique_ptr<TileMap> tile_map;
     std::vector<std::unique_ptr<Prop>> props;
     std::vector<std::unique_ptr<Enemy>> enemies;
 
 public:
     Paths paths;
-    Room(const MapData& map_data);
+    Room(const MapData& map_data,Player* player);
     void draw();
     void process();
 };

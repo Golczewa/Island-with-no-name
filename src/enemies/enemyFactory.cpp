@@ -6,10 +6,10 @@
 
 #include "testEnemy.h"
 
-std::unique_ptr<Enemy> EnemyFactory::create_enemy(EnemyFactory::Enemies enemy, Vector2 pos) {
+std::unique_ptr<Enemy> EnemyFactory::create_enemy(EnemyFactory::Enemies enemy, Vector2 pos,Player* player) {
     switch (enemy) {
         case EnemyFactory::TEST_ENEMY:
-            auto new_enemy=std::make_unique<TestEnemy>(pos);
+            auto new_enemy=std::make_unique<TestEnemy>(pos,player);
             return new_enemy;
     }
     throw std::invalid_argument("unknown enemy");

@@ -37,6 +37,7 @@ public:
     void teleport_to(Vector2 pos);
     void move_to_room();
     void take_damage(int dmg);
+    Vector2 get_position() const;
 
 };
 

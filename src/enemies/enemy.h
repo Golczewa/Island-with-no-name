@@ -10,7 +10,9 @@
 class Enemy {
 protected:
 	int health=0;
+	float speed=0;
 	Vector2 position{};
+	Vector2 velocity{};
 	Texture2D sprite{};
 public:
 	virtual ~Enemy();

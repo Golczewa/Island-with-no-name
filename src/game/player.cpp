@@ -133,3 +133,7 @@ void Player::move_to_room() {
 void Player::take_damage(int dmg) {
     health-=dmg;
 }
+
+Vector2 Player::get_position() const {
+    return position;
+}

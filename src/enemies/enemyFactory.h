@@ -9,12 +9,13 @@
 #include <unordered_map>
 
 #include "enemy.h"
+#include "../game/player.h"
 
 namespace EnemyFactory {
     enum Enemies {
         TEST_ENEMY,
     };
-    std::unique_ptr<Enemy> create_enemy(Enemies enemy,Vector2 pos);
+    std::unique_ptr<Enemy> create_enemy(Enemies enemy,Vector2 pos,Player* player);
 }
 
 

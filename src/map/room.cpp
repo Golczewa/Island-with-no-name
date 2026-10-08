@@ -4,13 +4,13 @@
 
 #include "room.h"
 
-Room::Room(const MapData& map_data) {
+Room::Room(const MapData& map_data,Player* player) {
     tile_map=std::make_unique<TileMap>(map_data.tiles_path,map_data.tile_number ,map_data.tiles);
     for (auto& prop: map_data.props) {
         props.push_back(std::make_unique<Prop>(prop.first,prop.second));
     }
     for (auto& enemy:map_data.enemies) {
-        enemies.push_back(EnemyFactory::create_enemy(enemy.first,enemy.second));
+        enemies.push_back(EnemyFactory::create_enemy(enemy.first,enemy.second,player));
     }
     id=map_data.id;
     paths=map_data.paths;
@@ -31,3 +31,4 @@ void Room::process() {
         enemy->process();
     }
 }
+
