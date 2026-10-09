@@ -31,7 +31,7 @@ TestEnemy::TestEnemy(Vector2 pos,Player *player_) {
 	health=max_health;
 	speed=0.5;
 	sprite=LoadTexture("assets/sprites/test_enemy.png");
-	collision={{position.x,position.y,16,16}
+	collision={{position.x,position.y,10,10}
 		,LAYER_0,LAYER_0,true,true,this};
 	CollisionWorld::add_collider(&collision);
 }

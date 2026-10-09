@@ -62,10 +62,6 @@ void Player::process() {
         stance=RIGHT;
 
     }
-    if (IsKeyDown(KEY_Z)) {
-        attack();
-    }
-
     if (!something_pressed){
         velocity.x=0;
         velocity.y=0;
@@ -90,21 +86,24 @@ void Player::process() {
     position.y = collision.shape.y;
     switch (stance) {
         case UP:
-            weapon_area.shape.x=position.x-16;
-            weapon_area.shape.y=position.y;
-            break;
-        case DOWN:
-            weapon_area.shape.x=position.x+16;
-            weapon_area.shape.y=position.y;
-            break;
-        case LEFT:
             weapon_area.shape.x=position.x;
             weapon_area.shape.y=position.y-16;
             break;
-        case RIGHT:
+        case DOWN:
             weapon_area.shape.x=position.x;
             weapon_area.shape.y=position.y+16;
             break;
+        case LEFT:
+            weapon_area.shape.x=position.x-16;
+            weapon_area.shape.y=position.y;
+            break;
+        case RIGHT:
+            weapon_area.shape.x=position.x+16;
+            weapon_area.shape.y=position.y;
+            break;
+    }
+    if (IsKeyPressed(KEY_Z)) {
+        attack();
     }
 }
 
