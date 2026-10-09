@@ -8,6 +8,8 @@ void Enemy::take_damage(int dmg) {
 	health-=dmg;
 	if (health<=0) {
 		dead=true;
+	}else {
+		flash_red();
 	}
 }
 
@@ -20,3 +22,7 @@ void Enemy::draw() {
 	DrawTexture(sprite,position.x,position.y,color);
 }
 
+void Enemy::flash_red() {
+	color=RED;
+	red_timer.start(0.1);
+}

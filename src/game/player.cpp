@@ -163,9 +163,6 @@ Vector2 Player::get_position() const {
 
 void Player::attack() {
     auto colliders=CollisionWorld::get_colliders(&weapon_area);
-    TraceLog(LOG_INFO,"Bodies in: %d",colliders.size());
-    TraceLog(LOG_INFO,"Collison pos: %f , %f",weapon_area.shape.x,weapon_area.shape.y);
-    TraceLog(LOG_INFO,"Player pos: %f , %f",position.x,position.y);
     for (auto col:colliders) {
         auto enemy=dynamic_cast<Enemy*>(col->owner);
         if (enemy) {

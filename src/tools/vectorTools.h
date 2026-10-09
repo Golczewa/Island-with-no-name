@@ -9,9 +9,9 @@
 
 class VectorTools {
 public:
-    static float distance(Vector2 vec1,Vector2 vec2);
-    static float length(Vector2 vec);
-    static Vector2 normalise(Vector2 vec);
+    [[nodiscard]] static float distance(Vector2 vec1,Vector2 vec2);
+    [[nodiscard]] static float length(Vector2 vec);
+    [[nodiscard]] static Vector2 normalise(Vector2 vec);
 };
 
 

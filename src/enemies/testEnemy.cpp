@@ -11,6 +11,10 @@ void TestEnemy::process() {
 		color=GRAY;
 		return;
 	}
+	red_timer.process();
+	if (!red_timer.is_running()) {
+		color=WHITE;
+	}
 	velocity.x=0;
 	velocity.y=0;
 	if (VectorTools::distance(position,player->get_position())>50) {
@@ -35,3 +39,6 @@ TestEnemy::TestEnemy(Vector2 pos,Player *player_) {
 		,LAYER_0,LAYER_0,true,true,this};
 	CollisionWorld::add_collider(&collision);
 }
+
+
+

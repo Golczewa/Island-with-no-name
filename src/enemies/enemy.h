@@ -7,6 +7,7 @@
 #include "raylib.h"
 #include "../tools/body.h"
 #include "../tools/collisionWorld.h"
+#include "../tools/timer.h"
 
 
 class Enemy : public Body{
@@ -19,11 +20,13 @@ protected:
 	Color color=WHITE;
 	Collision collision{};
 	bool dead=false;
+	Timer red_timer;
 public:
 	~Enemy() override;
 	virtual void process()=0;
 	void take_damage(int dmg);
 	void draw();
+	void flash_red();
 };
 
 

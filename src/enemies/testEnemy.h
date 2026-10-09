@@ -11,7 +11,6 @@
 class TestEnemy: public Enemy {
 	const int max_health=6;
 	Player* player;
-
 public:
 	TestEnemy(Vector2 pos,Player *player_);
 	void process() override;
