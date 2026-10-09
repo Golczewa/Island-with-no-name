@@ -39,6 +39,8 @@ add_executable(island_with_no_name src/main.cpp
         src/enemies/enemyFactory.h
         src/tools/vectorTools.cpp
         src/tools/vectorTools.h
+        src/tools/body.cpp
+        src/tools/body.h
 )
 
 target_link_libraries(island_with_no_name

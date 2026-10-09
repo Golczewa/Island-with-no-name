@@ -16,6 +16,7 @@ Player::Player(Game* game_) {
     animated_sprite.create_animation("walk_right",5,6);
     animated_sprite.create_animation("walk_left",7,8);
     CollisionWorld::add_collider(&collision);
+    CollisionWorld::add_collider(&weapon_area);
     game=game_;
 
 }
@@ -23,6 +24,7 @@ Player::Player(Game* game_) {
 Player::~Player() {
     UnloadTexture(sprite);
     CollisionWorld::remove_collider(&collision);
+    CollisionWorld::remove_collider(&weapon_area);
 
 }
 
@@ -58,6 +60,10 @@ void Player::process() {
         velocity.x=speed;
         animated_sprite.play_animation("walk_right");
         stance=RIGHT;
+
+    }
+    if (IsKeyDown(KEY_Z)) {
+        attack();
     }
 
     if (!something_pressed){
@@ -82,6 +88,24 @@ void Player::process() {
     velocity = CollisionWorld::move_and_slide(&collision, velocity,speed);
     position.x = collision.shape.x;
     position.y = collision.shape.y;
+    switch (stance) {
+        case UP:
+            weapon_area.shape.x=position.x-16;
+            weapon_area.shape.y=position.y;
+            break;
+        case DOWN:
+            weapon_area.shape.x=position.x+16;
+            weapon_area.shape.y=position.y;
+            break;
+        case LEFT:
+            weapon_area.shape.x=position.x;
+            weapon_area.shape.y=position.y-16;
+            break;
+        case RIGHT:
+            weapon_area.shape.x=position.x;
+            weapon_area.shape.y=position.y+16;
+            break;
+    }
 }
 
 void Player::teleport_to(Vector2 pos) {
@@ -136,4 +160,17 @@ void Player::take_damage(int dmg) {
 
 Vector2 Player::get_position() const {
     return position;
+}
+
+void Player::attack() {
+    auto colliders=CollisionWorld::get_colliders(&weapon_area);
+    TraceLog(LOG_INFO,"Bodies in: %d",colliders.size());
+    TraceLog(LOG_INFO,"Collison pos: %f , %f",weapon_area.shape.x,weapon_area.shape.y);
+    TraceLog(LOG_INFO,"Player pos: %f , %f",position.x,position.y);
+    for (auto col:colliders) {
+        auto enemy=dynamic_cast<Enemy*>(col->owner);
+        if (enemy) {
+            enemy->take_damage(sword_dmg);
+        }
+    }
 }

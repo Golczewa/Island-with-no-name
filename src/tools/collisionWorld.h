@@ -6,6 +6,8 @@
 #define ISLAND_WITH_NO_NAME_COLLISIONWORLD_H
 #include <unordered_set>
 #include <vector>
+#include "../tools/body.h"
+
 
 #include "raylib.h"
 
@@ -22,7 +24,7 @@ struct Collision {
     CollisionLayers Mask;
     bool solid;
     bool active;
-    void *owner;
+    Body *owner;
 };
 
 

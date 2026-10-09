@@ -6,6 +6,9 @@
 
 void Enemy::take_damage(int dmg) {
 	health-=dmg;
+	if (health<=0) {
+		dead=true;
+	}
 }
 
 Enemy::~Enemy() {

@@ -7,6 +7,10 @@
 #include "../tools/vectorTools.h"
 
 void TestEnemy::process() {
+	if (dead) {
+		color=GRAY;
+		return;
+	}
 	velocity.x=0;
 	velocity.y=0;
 	if (VectorTools::distance(position,player->get_position())>50) {

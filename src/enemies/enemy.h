@@ -5,10 +5,11 @@
 #ifndef ISLAND_WITH_NO_NAME_ENEMY_H
 #define ISLAND_WITH_NO_NAME_ENEMY_H
 #include "raylib.h"
+#include "../tools/body.h"
 #include "../tools/collisionWorld.h"
 
 
-class Enemy {
+class Enemy : public Body{
 protected:
 	int health=0;
 	float speed=0;
@@ -17,8 +18,9 @@ protected:
 	Texture2D sprite{};
 	Color color=WHITE;
 	Collision collision{};
+	bool dead=false;
 public:
-	virtual ~Enemy();
+	~Enemy() override;
 	virtual void process()=0;
 	void take_damage(int dmg);
 	void draw();
