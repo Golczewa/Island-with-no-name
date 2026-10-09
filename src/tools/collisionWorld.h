@@ -34,7 +34,7 @@ public:
     static void add_collider(Collision* collision);
     static void remove_collider(Collision* collision);
     static std::vector<Collision*> get_colliders(Collision* collision);
-    static Vector2 move_and_slide(Collision* collision, Vector2 velocity);
+    static Vector2 move_and_slide(Collision* collision, Vector2 velocity,float speed);
 };
 
 

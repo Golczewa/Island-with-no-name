@@ -7,6 +7,8 @@
 #include "../tools/vectorTools.h"
 
 void TestEnemy::process() {
+	velocity.x=0;
+	velocity.y=0;
 	if (VectorTools::distance(position,player->get_position())>50) {
 		Vector2 pos={-position.x+player->get_position().x,-position.y+player->get_position().y};
 		velocity=VectorTools::normalise(pos);
@@ -14,8 +16,9 @@ void TestEnemy::process() {
 		velocity.x=0;
 		velocity.y=0;
 	}
-	position.x+=velocity.x*speed;
-	position.y+=velocity.y*speed;
+	velocity = CollisionWorld::move_and_slide(&collision, velocity,speed);
+	position.x = collision.shape.x;
+	position.y = collision.shape.y;
 }
 
 TestEnemy::TestEnemy(Vector2 pos,Player *player_) {
@@ -24,4 +27,7 @@ TestEnemy::TestEnemy(Vector2 pos,Player *player_) {
 	health=max_health;
 	speed=0.5;
 	sprite=LoadTexture("assets/sprites/test_enemy.png");
+	collision={{position.x,position.y,16,16}
+		,LAYER_0,LAYER_0,true,true,this};
+	CollisionWorld::add_collider(&collision);
 }

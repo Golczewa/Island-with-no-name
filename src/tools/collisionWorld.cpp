@@ -30,10 +30,10 @@ std::vector<Collision *> CollisionWorld::get_colliders(Collision *collision) {
     return result;
 }
 
-Vector2 CollisionWorld::move_and_slide(Collision *collision, Vector2 velocity) {
+Vector2 CollisionWorld::move_and_slide(Collision *collision, Vector2 velocity,float speed) {
     constexpr int max_resolves = 4;
 
-    collision->shape.x += velocity.x;
+    collision->shape.x += velocity.x*speed;
     if (velocity.x != 0) {
         for (int i = 0; i < max_resolves; ++i) {
             Collision *best = nullptr;
@@ -65,7 +65,7 @@ Vector2 CollisionWorld::move_and_slide(Collision *collision, Vector2 velocity) {
         }
     }
 
-    collision->shape.y += velocity.y;
+    collision->shape.y += velocity.y*speed;
     if (velocity.y != 0) {
         for (int i = 0; i < max_resolves; ++i) {
             Collision *best = nullptr;

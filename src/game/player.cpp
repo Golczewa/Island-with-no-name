@@ -79,7 +79,7 @@ void Player::process() {
         }
 
     }
-    velocity = CollisionWorld::move_and_slide(&collision, velocity);
+    velocity = CollisionWorld::move_and_slide(&collision, velocity,speed);
     position.x = collision.shape.x;
     position.y = collision.shape.y;
 }

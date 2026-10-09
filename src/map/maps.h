@@ -46,7 +46,7 @@ struct MapLibrary {
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
 		3,
-		{{Vector2(16,16),"assets/sprites/palm.png"}},
+		{{Vector2(16,16),"assets/sprites/palm.png"},{Vector2(128,96),"assets/sprites/palm.png"}},
 		{3,-1,2,-1},
 		{{EnemyFactory::TEST_ENEMY,{32,32}}}
 	};

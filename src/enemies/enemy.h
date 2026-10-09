@@ -5,6 +5,7 @@
 #ifndef ISLAND_WITH_NO_NAME_ENEMY_H
 #define ISLAND_WITH_NO_NAME_ENEMY_H
 #include "raylib.h"
+#include "../tools/collisionWorld.h"
 
 
 class Enemy {
@@ -14,6 +15,8 @@ protected:
 	Vector2 position{};
 	Vector2 velocity{};
 	Texture2D sprite{};
+	Color color=WHITE;
+	Collision collision{};
 public:
 	virtual ~Enemy();
 	virtual void process()=0;

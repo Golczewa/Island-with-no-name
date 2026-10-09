@@ -10,9 +10,10 @@ void Enemy::take_damage(int dmg) {
 
 Enemy::~Enemy() {
 	UnloadTexture(sprite);
+	CollisionWorld::remove_collider(&collision);
 }
 
 void Enemy::draw() {
-	DrawTexture(sprite,position.x,position.y,WHITE);
+	DrawTexture(sprite,position.x,position.y,color);
 }
 
