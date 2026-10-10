@@ -9,6 +9,7 @@
 void TestEnemy::process() {
 	if (dead) {
 		color=GRAY;
+		collision.active=false;
 		return;
 	}
 	red_timer.process();

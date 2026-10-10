@@ -13,6 +13,7 @@ class AnimatedSprite {
     Texture2D& sprite;
     Rectangle& frames;
     int frame_count;
+    bool hidden=false;
 public:
     struct Animation {
         Animation(const std::string& _name,int _begin_frane,int _end_frame,int _frame_count,Rectangle& _frames,Texture2D& _sprite)
@@ -43,6 +44,9 @@ public:
     AnimatedSprite(int _frame_count,Rectangle& _frames,Texture2D& _sprite);
     void create_animation(const std::string& _name,int _begin_frame,int _end_frame);
     void play_animation(const std::string& _name);
+    void show();
+    void hide();
+    [[nodiscard]] bool is_hidden() const;
 };
 
 

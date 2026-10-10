@@ -21,3 +21,15 @@ void AnimatedSprite::play_animation(const std::string& _name) {
     curr_animation=&anim->second;
     curr_animation->play();
 }
+
+void AnimatedSprite::hide() {
+    hidden=true;
+}
+
+void AnimatedSprite::show() {
+    hidden=false;
+}
+
+bool AnimatedSprite::is_hidden() const {
+    return hidden;
+}

@@ -9,12 +9,19 @@
 Player::Player(Game* game_) {
     animated_sprite.create_animation("idle_down",0,0);
     animated_sprite.create_animation("idle_up",3,3);
-    animated_sprite.create_animation("idle_right",6,6);
-    animated_sprite.create_animation("idle_left",7,7);
+    animated_sprite.create_animation("idle_right",7,7);
+    animated_sprite.create_animation("idle_left",8,8);
     animated_sprite.create_animation("walk_down",1,2);
-    animated_sprite.create_animation("walk_up",3,4);
-    animated_sprite.create_animation("walk_right",5,6);
-    animated_sprite.create_animation("walk_left",7,8);
+    animated_sprite.create_animation("walk_up",4,5);
+    animated_sprite.create_animation("walk_right",6,7);
+    animated_sprite.create_animation("walk_left",8,9);
+    weaponless.create_animation("down",0,0);
+    weaponless.create_animation("up",1,1);
+    weaponless.create_animation("right",2,2);
+    weaponless.create_animation("left",3,3);
+    slash.create_animation("slash",0,6);
+    slash.hide();
+    weaponless.hide();
     CollisionWorld::add_collider(&collision);
     CollisionWorld::add_collider(&weapon_area);
     game=game_;
@@ -23,13 +30,23 @@ Player::Player(Game* game_) {
 
 Player::~Player() {
     UnloadTexture(sprite);
+    UnloadTexture(slash_sprite);
+    UnloadTexture(weaponless_sprite);
     CollisionWorld::remove_collider(&collision);
     CollisionWorld::remove_collider(&weapon_area);
 
 }
 
 void Player::draw() {
-    DrawTextureRec(sprite,frames,position,WHITE);
+    if (!animated_sprite.is_hidden()) {
+        DrawTextureRec(sprite,frames,position,WHITE);
+    }
+    if (!weaponless.is_hidden()) {
+        DrawTextureRec(weaponless_sprite,weapon_rec,position,WHITE);
+    }
+    if (!slash.is_hidden()) {
+        DrawTextureRec(slash_sprite,slash_rec,{weapon_area.shape.x,weapon_area.shape.y},WHITE);
+    }
 }
 
 void Player::process() {
@@ -104,6 +121,22 @@ void Player::process() {
     }
     if (IsKeyPressed(KEY_Z)) {
         attack();
+        weaponless.show();
+        animated_sprite.hide();
+        switch (stance) {
+            case UP:
+                weaponless.play_animation("up");
+                break;
+            case DOWN:
+                weaponless.play_animation("down");
+                break;
+            case LEFT:
+                weaponless.play_animation("left");
+                break;
+            case RIGHT:
+                weaponless.play_animation("right");
+                break;
+        }
     }
 }
 
