@@ -13,11 +13,13 @@ class AnimatedSprite {
     Texture2D& sprite;
     Rectangle& frames;
     int frame_count;
+    float speed;
     bool hidden=false;
+    bool is_playing=false;
 public:
     struct Animation {
-        Animation(const std::string& _name,int _begin_frane,int _end_frame,int _frame_count,Rectangle& _frames,Texture2D& _sprite)
-        :name(_name),begin_frame(_begin_frane),end_frame(_end_frame),frame_count(_frame_count),frames(_frames),sprite(_sprite) {}
+        Animation(const std::string& _name,int _begin_frane,int _end_frame,int _frame_count,Rectangle& _frames,Texture2D& _sprite,float speed)
+        :name(_name),begin_frame(_begin_frane),end_frame(_end_frame),frame_count(_frame_count),frames(_frames),sprite(_sprite),speed(speed) {}
         std::string name;
         int begin_frame=0;
         int end_frame=0;
@@ -25,7 +27,7 @@ public:
         Rectangle& frames;
         Texture2D& sprite;
         float frame_time=0;
-        float speed=8;
+        float speed;
         int curr_frame=0;
         void play() {
             frames.x=static_cast<float>(curr_frame)*static_cast<float>(sprite.width)/frame_count;
@@ -41,7 +43,7 @@ public:
     };
     std::unordered_map<std::string, Animation> animations;
     Animation* curr_animation=nullptr;
-    AnimatedSprite(int _frame_count,Rectangle& _frames,Texture2D& _sprite);
+    AnimatedSprite(int _frame_count,Rectangle& _frames,Texture2D& _sprite,float speeed=8);
     void create_animation(const std::string& _name,int _begin_frame,int _end_frame);
     void play_animation(const std::string& _name);
     void show();

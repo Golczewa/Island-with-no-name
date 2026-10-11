@@ -4,6 +4,8 @@
 
 #include "player.h"
 
+#include <algorithm>
+
 #include "game.h"
 
 Player::Player(Game* game_) {
@@ -15,13 +17,13 @@ Player::Player(Game* game_) {
     animated_sprite.create_animation("walk_up",4,5);
     animated_sprite.create_animation("walk_right",6,7);
     animated_sprite.create_animation("walk_left",8,9);
-    weaponless.create_animation("down",0,0);
-    weaponless.create_animation("up",1,1);
-    weaponless.create_animation("right",2,2);
-    weaponless.create_animation("left",3,3);
-    slash.create_animation("slash",0,6);
+    animated_sprite.create_animation("weaponless_down",10,10);
+    animated_sprite.create_animation("weaponless_up",11,11);
+    animated_sprite.create_animation("weaponless_right",12,12);
+    animated_sprite.create_animation("weaponless_left",13,13);
+
+    slash.create_animation("slash",0,5);
     slash.hide();
-    weaponless.hide();
     CollisionWorld::add_collider(&collision);
     CollisionWorld::add_collider(&weapon_area);
     game=game_;
@@ -31,7 +33,6 @@ Player::Player(Game* game_) {
 Player::~Player() {
     UnloadTexture(sprite);
     UnloadTexture(slash_sprite);
-    UnloadTexture(weaponless_sprite);
     CollisionWorld::remove_collider(&collision);
     CollisionWorld::remove_collider(&weapon_area);
 
@@ -41,15 +42,16 @@ void Player::draw() {
     if (!animated_sprite.is_hidden()) {
         DrawTextureRec(sprite,frames,position,WHITE);
     }
-    if (!weaponless.is_hidden()) {
-        DrawTextureRec(weaponless_sprite,weapon_rec,position,WHITE);
-    }
     if (!slash.is_hidden()) {
-        DrawTextureRec(slash_sprite,slash_rec,{weapon_area.shape.x,weapon_area.shape.y},WHITE);
+        DrawTextureRec(slash_sprite,slash_rec,slash_position,WHITE);
     }
 }
 
 void Player::process() {
+    attack_timer.process();
+    if (!attack_timer.is_running()) {
+        animated_sprite.show();
+    }
     move_to_room();
     bool something_pressed=false;
     velocity.x=0;
@@ -103,40 +105,43 @@ void Player::process() {
     position.y = collision.shape.y;
     switch (stance) {
         case UP:
-            weapon_area.shape.x=position.x;
-            weapon_area.shape.y=position.y-16;
+            if (attack_timer.is_running()) {
+                animated_sprite.play_animation("weaponless_up");
+            }
+            weapon_area.shape.x = position.x;
+            weapon_area.shape.y = position.y - 16;
             break;
         case DOWN:
-            weapon_area.shape.x=position.x;
-            weapon_area.shape.y=position.y+16;
+            if (attack_timer.is_running()) {
+                animated_sprite.play_animation("weaponless_down");
+            }
+            weapon_area.shape.x = position.x;
+            weapon_area.shape.y = position.y + 16;
             break;
         case LEFT:
-            weapon_area.shape.x=position.x-16;
-            weapon_area.shape.y=position.y;
+            if (attack_timer.is_running()) {
+                animated_sprite.play_animation("weaponless_left");
+            }
+            weapon_area.shape.x = position.x - 16;
+            weapon_area.shape.y = position.y;
             break;
         case RIGHT:
-            weapon_area.shape.x=position.x+16;
-            weapon_area.shape.y=position.y;
+            if (attack_timer.is_running()) {
+                animated_sprite.play_animation("weaponless_right");
+            }
+            weapon_area.shape.x = position.x + 16;
+            weapon_area.shape.y = position.y;
             break;
+    }
+    slash_position={weapon_area.shape.x,weapon_area.shape.y};
+    if (attack_timer.is_running()) {
+        slash.play_animation("slash");
+    } else {
+        slash.hide();
     }
     if (IsKeyPressed(KEY_Z)) {
         attack();
-        weaponless.show();
-        animated_sprite.hide();
-        switch (stance) {
-            case UP:
-                weaponless.play_animation("up");
-                break;
-            case DOWN:
-                weaponless.play_animation("down");
-                break;
-            case LEFT:
-                weaponless.play_animation("left");
-                break;
-            case RIGHT:
-                weaponless.play_animation("right");
-                break;
-        }
+
     }
 }
 
@@ -195,11 +200,24 @@ Vector2 Player::get_position() const {
 }
 
 void Player::attack() {
+    if (attack_timer.is_running()) {
+        return;
+    }
+    TraceLog(LOG_INFO,"weapon_pos_coll: %f %f",weapon_area.shape.x,weapon_area.shape.y);
+    attack_timer.start(6.0f/24.0f);
+    auto& slash_animation=slash.animations.at("slash");
+    slash_animation.curr_frame=slash_animation.begin_frame;
+    slash_animation.frame_time=0;
+    slash.show();
+    slash.play_animation("slash");
+
     auto colliders=CollisionWorld::get_colliders(&weapon_area);
     for (auto col:colliders) {
         auto enemy=dynamic_cast<Enemy*>(col->owner);
-        if (enemy) {
-            enemy->take_damage(sword_dmg);
+        if (!enemy) {
+            continue;
         }
+        enemy->take_damage(sword_dmg);
+        break;
     }
 }
