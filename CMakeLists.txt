@@ -42,6 +42,8 @@ add_executable(island_with_no_name src/main.cpp
         src/tools/body.h
         src/tools/timer.cpp
         src/tools/timer.h
+        src/enemies/bullets/bullet.cpp
+        src/enemies/bullets/bullet.h
 )
 
 target_link_libraries(island_with_no_name
