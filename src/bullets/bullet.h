@@ -5,8 +5,8 @@
 #ifndef ISLAND_WITH_NO_NAME_BULLET_H
 #define ISLAND_WITH_NO_NAME_BULLET_H
 #include "raylib.h"
-#include "../../tools/body.h"
-#include "../../tools/collisionWorld.h"
+#include "../tools/body.h"
+#include "../tools/collisionWorld.h"
 
 
 class Bullet:public Body {

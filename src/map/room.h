@@ -22,6 +22,7 @@ public:
     Room(const MapData& map_data,Player* player);
     void draw();
     void process();
+    [[nodiscard]] std::vector<int> get_navigation_path() const;
 };
 
 

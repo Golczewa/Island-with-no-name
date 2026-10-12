@@ -20,6 +20,7 @@ public:
 	Prop(Vector2 pos,const std::string& sprite_path="");
 	~Prop() override;
 	void draw();
+	[[nodiscard]] Vector2 get_position() const;
 };
 
 

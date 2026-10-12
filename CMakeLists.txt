@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.3)
 project(island_with_no_name)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 26)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -42,8 +42,10 @@ add_executable(island_with_no_name src/main.cpp
         src/tools/body.h
         src/tools/timer.cpp
         src/tools/timer.h
-        src/enemies/bullets/bullet.cpp
-        src/enemies/bullets/bullet.h
+        src/bullets/bullet.cpp
+        src/bullets/bullet.h
+        src/tools/navigationAgent.cpp
+        src/tools/navigationAgent.h
 )
 
 target_link_libraries(island_with_no_name

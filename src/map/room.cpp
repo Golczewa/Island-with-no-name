@@ -32,3 +32,11 @@ void Room::process() {
     }
 }
 
+std::vector<int> Room::get_navigation_path() const {
+    std::vector<int> map(16*12);
+    for (auto& prop:props) {
+        auto pos=prop->get_position();
+        map[pos.x*16+pos.y]=1;
+    }
+    return map;
+}
