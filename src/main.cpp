@@ -5,8 +5,8 @@
 
 
 int main(){
-    const int screenWidth = 1920;
-    const int screenHeight = 1040;
+    const int screenWidth = 1000;
+    const int screenHeight = 700;
     const int gameWidth = 256;
     const int gameHeight = 192;
     InitWindow(screenWidth, screenHeight, "Island with no name");
