@@ -9,15 +9,18 @@
 #include <algorithm>
 
 #include "raylib.h"
+#include "../enemies/enemy.h"
 
 
 class NavigationAgent {
     std::vector<int>navigation_map;
+    Enemy* owner;
 protected:
-    Vector2 astar(Vector2 curr_pos,Vector2 wanted_pos); //TODO
-    float chebyshev_heuristics(Vector2 pos1,Vector2 pos2);
+    void astar(Vector2 pos); //TODO
+    [[nodiscard]] int chebyshev_heuristics(Vector2 pos1,Vector2 pos2) const;
+    [[nodiscard]] std::pair<int,int> to_tile_pos(Vector2 vec);
 public:
-    NavigationAgent(std::vector<int> map);
+    NavigationAgent(std::vector<int> map,Enemy* own);
     Vector2 get_next_move(Vector2 curr_pos,Vector2 pos); //TODO
 };
 

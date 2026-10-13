@@ -26,3 +26,7 @@ void Enemy::flash_red() {
 	color=RED;
 	red_timer.start(0.1);
 }
+
+Vector2 Enemy::get_position() const {
+	return position;
+}

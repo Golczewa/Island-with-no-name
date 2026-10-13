@@ -27,6 +27,7 @@ public:
 	void take_damage(int dmg);
 	void draw();
 	void flash_red();
+	[[nodiscard]] Vector2 get_position() const;
 };
 
 
