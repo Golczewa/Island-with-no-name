@@ -38,7 +38,15 @@ std::vector<int> Room::get_navigation_path() const {
     std::vector<int> map(16*12);
     for (auto& prop:props) {
         auto pos=prop->get_position();
-        map[pos.x+std::floor(pos.y/16)]=1;
+        int cx=std::floor(pos.x/16);
+        int cy=std::floor(pos.y/16);
+        const int offsets[5][2]={{0,0},{-1,0},{1,0},{0,-1},{0,1}};
+        for (auto& o:offsets) {
+            int x=cx+o[0];
+            int y=cy+o[1];
+            if (x<0||x>=16||y<0||y>=12) continue;
+            map[x+y*16]=1;
+        }
     }
     return map;
 }
