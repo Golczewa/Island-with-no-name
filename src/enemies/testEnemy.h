@@ -6,13 +6,15 @@
 #define ISLAND_WITH_NO_NAME_TESTENEMY_H
 #include "enemy.h"
 #include "../game/player.h"
+#include "../tools/navigationAgent.h"
 
 
 class TestEnemy: public Enemy {
 	const int max_health=6;
 	Player* player;
+	NavigationAgent navigation_agent;
 public:
-	TestEnemy(Vector2 pos,Player *player_);
+	TestEnemy(Vector2 pos,Player *player_,const std::vector<int>& col_map);
 	void process() override;
 };
 

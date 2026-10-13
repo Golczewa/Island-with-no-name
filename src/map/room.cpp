@@ -12,7 +12,7 @@ Room::Room(const MapData& map_data,Player* player) {
         props.push_back(std::make_unique<Prop>(prop.first,prop.second));
     }
     for (auto& enemy:map_data.enemies) {
-        enemies.push_back(EnemyFactory::create_enemy(enemy.first,enemy.second,player));
+        enemies.push_back(EnemyFactory::create_enemy(enemy.first,enemy.second,player,get_navigation_path()));
     }
     id=map_data.id;
     paths=map_data.paths;

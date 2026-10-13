@@ -20,7 +20,7 @@ void TestEnemy::process() {
 	velocity.y=0;
 	if (VectorTools::distance(position,player->get_position())>50) {
 		Vector2 pos={-position.x+player->get_position().x,-position.y+player->get_position().y};
-		velocity=VectorTools::normalise(pos);
+		velocity=navigation_agent.get_next_move(pos);
 	}else {
 		velocity.x=0;
 		velocity.y=0;
@@ -30,8 +30,8 @@ void TestEnemy::process() {
 	position.y = collision.shape.y;
 }
 
-TestEnemy::TestEnemy(Vector2 pos,Player *player_) {
-	player=player_;
+TestEnemy::TestEnemy(Vector2 pos,Player *player_,const std::vector<int>& col_map)
+	: player(player_), navigation_agent(col_map,this) {
 	position=pos;
 	health=max_health;
 	speed=0.5;
@@ -40,6 +40,5 @@ TestEnemy::TestEnemy(Vector2 pos,Player *player_) {
 		,LAYER_0,LAYER_0,true,true,this};
 	CollisionWorld::add_collider(&collision);
 }
-
 
 
