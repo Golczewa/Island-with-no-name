@@ -40,7 +40,7 @@ std::vector<int> Room::get_navigation_path() const {
         auto pos=prop->get_position();
         int cx=std::floor(pos.x/16);
         int cy=std::floor(pos.y/16);
-        const int offsets[6][2]={{0,0},{-1,0},{1,0},{0,-1},{0,1},{-1,1}};
+        const int offsets[6][2]={{0,0},{-1,0},{1,0},{0,-1},{0,1},{-1,-1}};
         for (auto& o:offsets) {
             int x=cx+o[0];
             int y=cy+o[1];

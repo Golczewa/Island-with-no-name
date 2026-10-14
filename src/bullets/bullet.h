@@ -14,6 +14,7 @@ protected:
     Vector2 position{};
     Texture2D sprite{};
     Collision collision_{};
+    Vector2 velocity{};
 public:
     virtual void process()=0;
     void draw();

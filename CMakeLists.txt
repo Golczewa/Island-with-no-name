@@ -46,6 +46,8 @@ add_executable(island_with_no_name src/main.cpp
         src/bullets/bullet.h
         src/tools/navigationAgent.cpp
         src/tools/navigationAgent.h
+        src/bullets/defaultBullet.cpp
+        src/bullets/defaultBullet.h
 )
 
 target_link_libraries(island_with_no_name
