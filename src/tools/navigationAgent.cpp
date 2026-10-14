@@ -61,8 +61,8 @@ std::vector<int> NavigationAgent::get_neighbors(std::pair<int,int> pos) {
 }
 
 void NavigationAgent::astar(Vector2 pos) {
+    auto start= curr_path.empty() ? global_to_tile_pos(owner->get_position()) : index_to_pos(curr_path[0]);
     curr_path.clear();
-    auto start=global_to_tile_pos(owner->get_position());
     auto target=global_to_tile_pos(pos);
     std::priority_queue<DataTrio, std::vector<DataTrio>, std::greater<DataTrio>> open;
     std::unordered_map<int,float>g;

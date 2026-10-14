@@ -18,7 +18,7 @@ void TestEnemy::process() {
 	}
 	velocity.x=0;
 	velocity.y=0;
-	if (VectorTools::distance(position,player->get_position())>50) {
+	if (VectorTools::distance(position,player->get_position())>25) {
 		velocity=navigation_agent.get_next_move(player->get_position());
 	}else {
 		velocity.x=0;
