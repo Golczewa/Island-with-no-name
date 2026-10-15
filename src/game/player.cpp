@@ -6,6 +6,7 @@
 
 #include <algorithm>
 
+#include "../enemies/enemy.h"
 #include "game.h"
 
 Player::Player(Game* game_) {

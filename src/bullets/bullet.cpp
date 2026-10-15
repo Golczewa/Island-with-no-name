@@ -10,5 +10,5 @@ Bullet::~Bullet() {
 }
 
 void Bullet::draw() {
-    DrawTexture(sprite,position.x,position.y,WHITE);
+    DrawTexture(sprite,position.x,position.y,color);
 }

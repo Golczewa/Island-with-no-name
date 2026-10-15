@@ -15,6 +15,10 @@ protected:
     Texture2D sprite{};
     Collision collision_{};
     Vector2 velocity{};
+    Color color=WHITE;
+    bool to_remove=false;
+    float speed=2;
+    int dmg=1;
 public:
     virtual void process()=0;
     void draw();

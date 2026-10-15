@@ -6,6 +6,7 @@
 #define ISLAND_WITH_NO_NAME_TESTENEMY_H
 #include "enemy.h"
 #include "../game/player.h"
+#include "../map/room.h"
 #include "../tools/navigationAgent.h"
 
 
@@ -14,7 +15,7 @@ class TestEnemy: public Enemy {
 	Player* player;
 	NavigationAgent navigation_agent;
 public:
-	TestEnemy(Vector2 pos,Player *player_,const std::vector<int>& col_map);
+	TestEnemy(Vector2 pos,Player *player_,Room* room_);
 	void process() override;
 };
 

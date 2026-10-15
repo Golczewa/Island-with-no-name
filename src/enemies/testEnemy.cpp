@@ -29,8 +29,9 @@ void TestEnemy::process() {
 	position.y = collision.shape.y;
 }
 
-TestEnemy::TestEnemy(Vector2 pos,Player *player_,const std::vector<int>& col_map)
-	: player(player_), navigation_agent(col_map,this) {
+TestEnemy::TestEnemy(Vector2 pos,Player *player_,Room* room_)
+	: player(player_),navigation_agent(room_->get_navigation_path(),this){
+	room=room_;
 	position=pos;
 	health=max_health;
 	speed=0.5;

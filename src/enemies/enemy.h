@@ -9,6 +9,7 @@
 #include "../tools/collisionWorld.h"
 #include "../tools/timer.h"
 
+class Room;
 
 class Enemy : public Body{
 protected:
@@ -21,6 +22,7 @@ protected:
 	Collision collision{};
 	bool dead=false;
 	Timer red_timer;
+	Room* room=nullptr;
 public:
 	~Enemy() override;
 	virtual void process()=0;

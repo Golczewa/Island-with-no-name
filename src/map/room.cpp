@@ -6,17 +6,22 @@
 
 #include <cmath>
 
+#include "../bullets/bullet.h"
+#include "../enemies/enemy.h"
+
 Room::Room(const MapData& map_data,Player* player) {
     tile_map=std::make_unique<TileMap>(map_data.tiles_path,map_data.tile_number ,map_data.tiles);
     for (auto& prop: map_data.props) {
         props.push_back(std::make_unique<Prop>(prop.first,prop.second));
     }
     for (auto& enemy:map_data.enemies) {
-        enemies.push_back(EnemyFactory::create_enemy(enemy.first,enemy.second,player,get_navigation_path()));
+        enemies.push_back(EnemyFactory::create_enemy(enemy.first,enemy.second,player,this));
     }
     id=map_data.id;
     paths=map_data.paths;
 }
+
+Room::~Room() = default;
 
 void Room::draw() {
     tile_map->draw();
@@ -49,4 +54,8 @@ std::vector<int> Room::get_navigation_path() const {
         }
     }
     return map;
+}
+
+void Room::add_bullet(std::unique_ptr<Bullet> bullet) {
+    bullets.push_back(std::move(bullet));
 }

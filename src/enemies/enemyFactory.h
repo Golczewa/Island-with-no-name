@@ -9,14 +9,17 @@
 #include <unordered_map>
 #include <vector>
 
-#include "enemy.h"
-#include "../game/player.h"
+#include "raylib.h"
+
+class Enemy;
+class Player;
+class Room;
 
 namespace EnemyFactory {
     enum Enemies {
         TEST_ENEMY,
     };
-    std::unique_ptr<Enemy> create_enemy(Enemies enemy,Vector2 pos,Player* player,const std::vector<int>& col_map);
+    std::unique_ptr<Enemy> create_enemy(Enemies enemy, Vector2 pos, Player* player, Room* room);
 }
 
 
