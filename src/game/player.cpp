@@ -194,6 +194,7 @@ void Player::move_to_room() {
 
 void Player::take_damage(int dmg) {
     health-=dmg;
+    TraceLog(LOG_INFO,"player took %d damage",dmg);
 }
 
 Vector2 Player::get_position() const {

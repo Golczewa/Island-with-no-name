@@ -26,6 +26,7 @@ void DefaultBullet::process() {
                 break;
             }
         }
-
+    position.x+=velocity.x*speed;
+        position.y+=velocity.y*speed;
     }
 }

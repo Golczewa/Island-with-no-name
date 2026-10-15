@@ -31,12 +31,21 @@ void Room::draw() {
     for (auto& enemy:enemies) {
         enemy->draw();
     }
+    for (auto& bullet:bullets) {
+        bullet->draw();
+    }
 }
 
 void Room::process() {
     for (auto& enemy:enemies) {
         enemy->process();
     }
+    for (auto& bullet:bullets) {
+        if (bullet->is_to_remove()) {
+            bullet->process();
+        }
+    }
+    remove_bullets();
 }
 
 std::vector<int> Room::get_navigation_path() const {
@@ -58,4 +67,13 @@ std::vector<int> Room::get_navigation_path() const {
 
 void Room::add_bullet(std::unique_ptr<Bullet> bullet) {
     bullets.push_back(std::move(bullet));
+}
+
+void Room::remove_bullets() {
+    for (auto it=bullets.begin();it!=bullets.end();++it) {
+        auto bullet=it->get();
+        if (bullet->is_to_remove()) {
+            it=bullets.erase(it);
+        }
+    }
 }

@@ -8,15 +8,20 @@
 #include "../game/player.h"
 #include "../map/room.h"
 #include "../tools/navigationAgent.h"
-
+#include "../bullets/defaultBullet.h"
+#include "../tools/timer.h"
 
 class TestEnemy: public Enemy {
 	const int max_health=6;
+	float cooldown=3;
 	Player* player;
 	NavigationAgent navigation_agent;
+	Timer attack_timer{};
+
 public:
 	TestEnemy(Vector2 pos,Player *player_,Room* room_);
 	void process() override;
+	void attack();
 };
 
 #endif //ISLAND_WITH_NO_NAME_TESTENEMY_H

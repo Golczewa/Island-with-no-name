@@ -31,6 +31,7 @@ public:
     void process();
     [[nodiscard]] std::vector<int> get_navigation_path() const;
     void add_bullet(std::unique_ptr<Bullet> bullet);
+    void remove_bullets();
 };
 
 

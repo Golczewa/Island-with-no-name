@@ -12,3 +12,7 @@ Bullet::~Bullet() {
 void Bullet::draw() {
     DrawTexture(sprite,position.x,position.y,color);
 }
+
+bool Bullet::is_to_remove() const {
+    return to_remove;
+}

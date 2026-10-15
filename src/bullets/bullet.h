@@ -22,6 +22,7 @@ protected:
 public:
     virtual void process()=0;
     void draw();
+    [[nodiscard]] bool is_to_remove() const;
     ~Bullet() override;
 
 };
