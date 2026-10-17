@@ -41,7 +41,7 @@ void Room::process() {
         enemy->process();
     }
     for (auto& bullet:bullets) {
-        if (bullet->is_to_remove()) {
+        if (!bullet->is_to_remove()) {
             bullet->process();
         }
     }
@@ -70,10 +70,5 @@ void Room::add_bullet(std::unique_ptr<Bullet> bullet) {
 }
 
 void Room::remove_bullets() {
-    for (auto it=bullets.begin();it!=bullets.end();++it) {
-        auto bullet=it->get();
-        if (bullet->is_to_remove()) {
-            it=bullets.erase(it);
-        }
-    }
+    std::erase_if(bullets, [](const auto& b) { return b->is_to_remove(); });
 }
