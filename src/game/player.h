@@ -18,6 +18,7 @@ class Player:public Body {
     int sword_dmg=2;
     Vector2 position={.x =128,.y = 128};
     Vector2 velocity={0,0};
+	Vector2 middle_offset={8,8};
     Collision collision={{position.x,position.y,16,16},LAYER_0,LAYER_0,true,true,this};
     Collision weapon_area={{position.x,position.y+16,20,20},LAYER_0,LAYER_0,false,true,this};
     Vector2 slash_position{};
@@ -50,6 +51,7 @@ public:
     void teleport_to(Vector2 pos);
     void move_to_room();
     void take_damage(int dmg);
+    [[nodiscard]] Vector2 get_middle() const;
     [[nodiscard]] Vector2 get_position() const;
     void attack();
 

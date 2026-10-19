@@ -47,10 +47,10 @@ TestEnemy::TestEnemy(Vector2 pos,Player *player_,Room* room_)
 }
 
 void TestEnemy::attack() {
-	auto playet_pos=player->get_position();
+	auto playet_pos=player->get_middle();
 	Vector2 direction={-position.x+playet_pos.x,-position.y+playet_pos.y};
 	direction=VectorTools::normalise(direction);
-	Vector2 bullet_pos={position.x+direction.x*16,position.y+direction.y*16};
+	Vector2 bullet_pos={get_middle().x+direction.x*16,get_middle().y+direction.y*16};
 	auto bullet=std::make_unique<DefaultBullet>(bullet_pos,direction);
 	room->add_bullet(std::move(bullet));
 }

@@ -23,12 +23,14 @@ protected:
 	bool dead=false;
 	Timer red_timer;
 	Room* room=nullptr;
+	Vector2 middle_offset={8,8};
 public:
 	~Enemy() override;
 	virtual void process()=0;
 	void take_damage(int dmg);
 	void draw();
 	void flash_red();
+	[[nodiscard]] Vector2 get_middle() const;
 	[[nodiscard]] Vector2 get_position() const;
 };
 
