@@ -22,7 +22,7 @@ class Creature:public Enemy{
     Player* player;
     NavigationAgent navigation_agent;
     Timer attack_timer{};
-    Rectangle frames{0,0,static_cast<float>(sprite.width)/3,static_cast<float>(sprite.height)};
+    Rectangle frames;
     std::unique_ptr<AnimatedSprite> animated_sprite;
 public:
     Creature(Vector2 pos,Player *player_,Room* room_);

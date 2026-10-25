@@ -27,9 +27,6 @@ void Enemy::flash_red() {
 	red_timer.start(0.1);
 }
 
-Vector2 Enemy::get_middle() const {
-	return {position.x+middle_offset.x,position.y+middle_offset.y};
-}
 
 Vector2 Enemy::get_position() const {
 	return position;

@@ -11,6 +11,7 @@ Creature::Creature(Vector2 pos, Player *player_, Room *room_)
     health=max_health;
     speed=max_speed;
     sprite=LoadTexture("assets/sprites/bad_guy.png");
+    frames = {0, 0, static_cast<float>(sprite.width) / 3.0f, static_cast<float>(sprite.height)};
     animated_sprite=std::make_unique<AnimatedSprite>(3,frames,sprite);
     animated_sprite->create_animation("stand",0,0);
     animated_sprite->create_animation("walk",1,2);
@@ -21,6 +22,7 @@ Creature::Creature(Vector2 pos, Player *player_, Room *room_)
 
 void Creature::process() {
     if (dead) {
+        animated_sprite->play_animation("stand");
         color=GRAY;
         collision.active=false;
         return;
