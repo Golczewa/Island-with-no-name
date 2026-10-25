@@ -13,6 +13,7 @@
 
 class TestEnemy: public Enemy {
 	const int max_health=6;
+    const float max_speed=0.5;
 	float cooldown=3;
 	Player* player;
 	NavigationAgent navigation_agent;

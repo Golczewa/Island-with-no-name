@@ -14,6 +14,7 @@ class Room;
 class Enemy : public Body{
 protected:
 	int health=0;
+	float middle_offset=8;
 	float speed=0;
 	Vector2 position{};
 	Vector2 velocity{};
@@ -28,10 +29,11 @@ public:
 	~Enemy() override;
 	virtual void process()=0;
 	void take_damage(int dmg);
-	void draw();
+	virtual void draw();
 	void flash_red();
 	[[nodiscard]] Vector2 get_middle() const;
 	[[nodiscard]] Vector2 get_position() const;
+	[[nodiscard]] Vector2 get_middle() const;
 };
 
 

@@ -9,7 +9,7 @@
 
 
 class DefaultBullet:public Bullet {
-    Timer color_switch_timer{};
+    Timer color_switch_timer=Timer();
 public:
     DefaultBullet(Vector2 pos,Vector2 vel);
     void process() override;

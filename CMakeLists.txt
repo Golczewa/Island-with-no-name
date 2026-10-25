@@ -48,6 +48,8 @@ add_executable(island_with_no_name src/main.cpp
         src/tools/navigationAgent.h
         src/bullets/defaultBullet.cpp
         src/bullets/defaultBullet.h
+        src/enemies/creature.cpp
+        src/enemies/creature.h
 )
 
 target_link_libraries(island_with_no_name

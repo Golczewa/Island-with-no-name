@@ -39,7 +39,7 @@ TestEnemy::TestEnemy(Vector2 pos,Player *player_,Room* room_)
 	room=room_;
 	position=pos;
 	health=max_health;
-	speed=0.5;
+	speed=max_speed;
 	sprite=LoadTexture("assets/sprites/test_enemy.png");
 	collision={{position.x,position.y,10,10}
 		,LAYER_0,LAYER_0,true,true,this};

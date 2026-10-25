@@ -18,6 +18,7 @@ class Room;
 namespace EnemyFactory {
     enum Enemies {
         TEST_ENEMY,
+        CREATURE,
     };
     std::unique_ptr<Enemy> create_enemy(Enemies enemy, Vector2 pos, Player* player, Room* room);
 }

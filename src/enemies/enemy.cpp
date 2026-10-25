@@ -34,3 +34,7 @@ Vector2 Enemy::get_middle() const {
 Vector2 Enemy::get_position() const {
 	return position;
 }
+
+Vector2 Enemy::get_middle() const {
+	return {position.x+middle_offset,position.y+middle_offset};
+}

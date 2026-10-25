@@ -16,6 +16,7 @@ class Player:public Body {
     const int max_health=6;
     int health=max_health;
     int sword_dmg=2;
+    const float middle_offset=8.0;
     Vector2 position={.x =128,.y = 128};
     Vector2 velocity={0,0};
 	Vector2 middle_offset={8,8};
@@ -53,6 +54,7 @@ public:
     void take_damage(int dmg);
     [[nodiscard]] Vector2 get_middle() const;
     [[nodiscard]] Vector2 get_position() const;
+    [[nodiscard]] Vector2 get_middle() const;
     void attack();
 
 };

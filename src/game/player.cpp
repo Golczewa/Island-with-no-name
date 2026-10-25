@@ -201,10 +201,6 @@ Vector2 Player::get_position() const {
     return position;
 }
 
-Vector2 Player::get_middle() const {
-    return {position.x+middle_offset.x,position.y+middle_offset.y};
-}
-
 void Player::attack() {
     if (attack_timer.is_running()) {
         return;
