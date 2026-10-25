@@ -46,9 +46,12 @@ struct MapLibrary {
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
 		3,
-		{{Vector2(16,16),"assets/sprites/palm.png"},{Vector2(128,96),"assets/sprites/palm.png"}},
+		{{Vector2(16,16),"assets/sprites/palm.png"},
+		{Vector2(128,112),"assets/sprites/camp.png"},
+		{Vector2(32,16),"assets/sprites/palm.png"},
+		{Vector2(96,16),"assets/sprites/palm.png"}},
 		{3,-1,2,-1},
-		{{EnemyFactory::CREATURE,{32,32}}}
+		{}
 	};
 	MapData map2={
 		2,
