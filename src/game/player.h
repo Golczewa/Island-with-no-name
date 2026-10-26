@@ -53,6 +53,7 @@ public:
     void take_damage(int dmg);
     [[nodiscard]] Vector2 get_middle() const;
     [[nodiscard]] Vector2 get_position() const;
+    [[nodiscard]] float get_health_precent() const;
     void attack();
 
 };

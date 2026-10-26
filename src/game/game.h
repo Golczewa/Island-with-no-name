@@ -6,6 +6,7 @@
 #define ISLAND_WITH_NO_NAME_GAME_H
 #include <memory>
 
+#include "gameUI.h"
 #include "../map/room.h"
 #include "../map/maps.h"
 
@@ -14,6 +15,7 @@ class Player;
 class Game {
     MapLibrary map_library;
     std::unique_ptr<Player> player;
+    std::unique_ptr<GameUI> game_ui_;
     MapData get_map(int room_id);
 public:
     std::unique_ptr<Room> curr_room;

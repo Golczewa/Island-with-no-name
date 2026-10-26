@@ -194,7 +194,7 @@ void Player::move_to_room() {
 
 void Player::take_damage(int dmg) {
     health-=dmg;
-    TraceLog(LOG_INFO,"player took %d damage",dmg);
+    TraceLog(LOG_INFO,"player took %d damage now he has %d",dmg,health);
 }
 
 Vector2 Player::get_position() const {
@@ -226,4 +226,8 @@ void Player::attack() {
         enemy->take_damage(sword_dmg);
         break;
     }
+}
+
+float Player::get_health_precent() const {
+    return static_cast<float>(health)/max_health;
 }

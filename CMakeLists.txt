@@ -50,6 +50,8 @@ add_executable(island_with_no_name src/main.cpp
         src/bullets/defaultBullet.h
         src/enemies/creature.cpp
         src/enemies/creature.h
+        src/game/gameUI.cpp
+        src/game/gameUI.h
 )
 
 target_link_libraries(island_with_no_name

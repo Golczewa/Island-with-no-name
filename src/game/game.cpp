@@ -7,18 +7,22 @@
 
 Game::Game()
     : player(std::make_unique<Player>(this)),
-      curr_room(std::make_unique<Room>(map_library.map1,player.get())) {}
+      curr_room(std::make_unique<Room>(map_library.map1,player.get())) {
+    game_ui_=std::make_unique<GameUI>(player.get());
+}
 
 Game::~Game() = default;
 
 void Game::process() {
     player->process();
     curr_room->process();
+    game_ui_->process();
 }
 
 void Game::draw() {
     curr_room->draw();
     player->draw();
+    game_ui_->draw();
 }
 
 MapData Game::get_map(int room_id) {

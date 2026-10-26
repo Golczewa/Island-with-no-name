@@ -74,7 +74,7 @@ struct MapLibrary {
 		3,
 		{{Vector2(12*16,3*16),"assets/sprites/palm.png"}},
 		{-1,-1,-1,1},
-		{}
+		{{EnemyFactory::Enemies::CREATURE,{64,64}}}
 	};
 	MapData map3={
 		3,
