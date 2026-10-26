@@ -22,6 +22,7 @@ struct MapData {
 	int id;
 	std::string tiles_path;
 	std::vector<int> tiles;
+	std::vector<int> cols;
 	int tile_number;
 	std::vector<std::pair<Vector2,std::string>> props;
 	Paths paths;
@@ -45,6 +46,7 @@ struct MapLibrary {
 		0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+		{0,0,1},
 		3,
 		{{Vector2(16,16),"assets/sprites/palm.png"},
 		{Vector2(128,112),"assets/sprites/camp.png"},
@@ -68,6 +70,7 @@ struct MapLibrary {
 		2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+		{0,0,1},
 		3,
 		{{Vector2(12*16,3*16),"assets/sprites/palm.png"}},
 		{-1,-1,-1,1},
@@ -88,6 +91,7 @@ struct MapLibrary {
 		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+		{0,0,1},
 		3,
 		{{Vector2(16,10*16),"assets/sprites/palm.png"}},
 		{-1,1,-1,-1},

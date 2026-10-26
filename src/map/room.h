@@ -25,7 +25,7 @@ class Room {
 
 public:
     Paths paths;
-    Room(const MapData& map_data,Player* player);
+    Room(const MapData& map_data,Player* player_);
     ~Room();
     void draw();
     void process();

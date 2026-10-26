@@ -9,8 +9,18 @@
 #include "../bullets/bullet.h"
 #include "../enemies/enemy.h"
 
-Room::Room(const MapData& map_data,Player* player) {
-    tile_map=std::make_unique<TileMap>(map_data.tiles_path,map_data.tile_number ,map_data.tiles);
+Room::Room(const MapData& map_data,Player* player_) {
+    player=player_;
+    tile_map=std::make_unique<TileMap>(map_data.tiles_path,map_data.tile_number ,map_data.tiles,map_data.cols);
+    for (int i=0;i<12;i++) {
+        for (int j=0;j<16;j++) {
+            TraceLog(LOG_INFO,"pos: %d, %d on tile %d , col: %d ",i,j,tile_map->get_map()[i*16+j],map_data.cols[tile_map->get_map()[i*16+j]]);
+            if (map_data.cols[tile_map->get_map()[i*16+j]]==1) {
+                Collision tile_col{Rectangle{static_cast<float>(j*16),static_cast<float>(i*16),16,16},LAYER_0,LAYER_0,true,true,nullptr};
+                tile_map->add_tile_collision(tile_col);
+            }
+        }
+    }
     for (auto& prop: map_data.props) {
         props.push_back(std::make_unique<Prop>(prop.first,prop.second));
     }
@@ -60,6 +70,11 @@ std::vector<int> Room::get_navigation_path() const {
             int y=cy+o[1];
             if (x<0||x>=16||y<0||y>=12) continue;
             map[x+y*16]=1;
+        }
+    }
+    for (int i=0;i<16*12;i++) {
+        if (tile_map->get_cols()[tile_map->get_map()[i]]) {
+            map[i]=1;
         }
     }
     return map;
