@@ -6,9 +6,9 @@
 #include "player.h"
 
 Game::Game()
-    : player(std::make_unique<Player>(this)),
-      curr_room(std::make_unique<Room>(map_library.map1,player.get())) {
+    : player(std::make_unique<Player>(this)){
     game_ui_=std::make_unique<GameUI>(player.get());
+    change_room(1);
 }
 
 Game::~Game() = default;
@@ -38,6 +38,14 @@ void Game::change_room(int room_id) {
     if (room_id==-1) {
         return;
     }
-    curr_room=std::make_unique<Room>(get_map(room_id),player.get());
+    if (curr_room) {
+        curr_room->cleanup();
+    }
+    auto it = visited.find(room_id);
+    if (it == visited.end()) {
+        it = visited.emplace(room_id,
+                std::make_unique<Room>(get_map(room_id), player.get())).first;
+    }
+    curr_room = it->second.get();
 }
 

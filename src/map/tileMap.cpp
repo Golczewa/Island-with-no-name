@@ -16,9 +16,7 @@ TileMap::TileMap(const std::string path,int number,std::vector<int> _map,std::ve
 }
 
 TileMap::~TileMap() {
-    for (auto& collision : collisions) {
-        CollisionWorld::remove_collider(&collision);
-    }
+    clear_collisions();
     UnloadTexture(sprite);
 }
 
@@ -53,4 +51,10 @@ void TileMap::add_tile_collision(Collision collision) {
 
 std::vector<int> &TileMap::get_cols() {
     return tile_cols;
+}
+
+void TileMap::clear_collisions() {
+    for (auto& collision : collisions) {
+        CollisionWorld::remove_collider(&collision);
+    }
 }

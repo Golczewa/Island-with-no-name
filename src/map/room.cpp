@@ -87,3 +87,12 @@ void Room::add_bullet(std::unique_ptr<Bullet> bullet) {
 void Room::remove_bullets() {
     std::erase_if(bullets, [](const auto& b) { return b->is_to_remove(); });
 }
+
+int Room::get_id() {
+    return id;
+}
+
+void Room::cleanup() {
+    tile_map->clear_collisions();
+    remove_bullets();
+}

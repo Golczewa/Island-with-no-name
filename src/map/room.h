@@ -30,6 +30,8 @@ public:
     void draw();
     void process();
     [[nodiscard]] std::vector<int> get_navigation_path() const;
+    [[nodiscard]] int get_id();
+    void cleanup();
     void add_bullet(std::unique_ptr<Bullet> bullet);
     void remove_bullets();
 };

@@ -24,6 +24,7 @@ public:
     void add_tile_collision(Collision collision);
     [[nodiscard]] std::vector<int>& get_map();
     [[nodiscard]] std::vector<int>& get_cols();
+    void clear_collisions();
 };
 
 
