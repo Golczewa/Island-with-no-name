@@ -10,7 +10,7 @@
 
 class GameUI {
     Player* player_;
-    const Vector2 hearth_pos={8,8};
+    const Vector2 hearth_pos={8,196};
     Texture2D hearth=LoadTexture("assets/sprites/hearths.png");
     Rectangle hearth_rec={0,0,static_cast<float>(hearth.width),static_cast<float>(hearth.height)};
 public:

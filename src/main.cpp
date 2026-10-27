@@ -8,7 +8,7 @@ int main(){
     const int screenWidth = 1000;
     const int screenHeight = 700;
     const int gameWidth = 256;
-    const int gameHeight = 192;
+    const int gameHeight = 216;
     InitWindow(screenWidth, screenHeight, "Island with no name");
     SetTargetFPS(60);
     RenderTexture2D target=LoadRenderTexture(gameWidth,gameHeight);
