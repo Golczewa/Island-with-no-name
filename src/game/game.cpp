@@ -47,5 +47,6 @@ void Game::change_room(int room_id) {
                 std::make_unique<Room>(get_map(room_id), player.get())).first;
     }
     curr_room = it->second.get();
+    curr_room->register_collisions();
 }
 

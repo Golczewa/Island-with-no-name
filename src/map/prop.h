@@ -20,6 +20,8 @@ public:
 	Prop(Vector2 pos,const std::string& sprite_path="");
 	~Prop() override;
 	void draw();
+	void register_collision();
+	void unregister_collision();
 	[[nodiscard]] Vector2 get_position() const;
 };
 

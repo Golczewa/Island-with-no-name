@@ -30,6 +30,8 @@ public:
 	void take_damage(int dmg);
 	virtual void draw();
 	void flash_red();
+	void register_collision();
+	void unregister_collision();
 	[[nodiscard]] Vector2 get_middle() const;
 	[[nodiscard]] Vector2 get_position() const;
 };

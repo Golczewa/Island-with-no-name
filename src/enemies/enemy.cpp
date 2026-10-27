@@ -15,7 +15,7 @@ void Enemy::take_damage(int dmg) {
 
 Enemy::~Enemy() {
 	UnloadTexture(sprite);
-	CollisionWorld::remove_collider(&collision);
+	unregister_collision();
 }
 
 void Enemy::draw() {
@@ -34,4 +34,12 @@ Vector2 Enemy::get_position() const {
 
 Vector2 Enemy::get_middle() const {
 	return {position.x+middle_offset,position.y+middle_offset};
+}
+
+void Enemy::register_collision() {
+	CollisionWorld::add_collider(&collision);
+}
+
+void Enemy::unregister_collision() {
+	CollisionWorld::remove_collider(&collision);
 }

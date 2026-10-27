@@ -12,15 +12,7 @@
 Room::Room(const MapData& map_data,Player* player_) {
     player=player_;
     tile_map=std::make_unique<TileMap>(map_data.tiles_path,map_data.tile_number ,map_data.tiles,map_data.cols);
-    for (int i=0;i<12;i++) {
-        for (int j=0;j<16;j++) {
-            TraceLog(LOG_INFO,"pos: %d, %d on tile %d , col: %d ",i,j,tile_map->get_map()[i*16+j],map_data.cols[tile_map->get_map()[i*16+j]]);
-            if (map_data.cols[tile_map->get_map()[i*16+j]]==1) {
-                Collision tile_col{Rectangle{static_cast<float>(j*16),static_cast<float>(i*16),16,16},LAYER_0,LAYER_0,true,true,nullptr};
-                tile_map->add_tile_collision(tile_col);
-            }
-        }
-    }
+    register_tile_collisions();
     for (auto& prop: map_data.props) {
         props.push_back(std::make_unique<Prop>(prop.first,prop.second));
     }
@@ -95,4 +87,31 @@ int Room::get_id() {
 void Room::cleanup() {
     tile_map->clear_collisions();
     remove_bullets();
+    for (auto& enemy: enemies) {
+        enemy->unregister_collision();
+    }
+    for (auto& porp:props) {
+        porp->unregister_collision();
+    }
+}
+
+void Room::register_collisions() {
+    register_tile_collisions();
+    for (auto& enemy: enemies) {
+        enemy->register_collision();
+    }
+    for (auto& porp:props) {
+        porp->register_collision();
+    }
+}
+
+void Room::register_tile_collisions() const {
+    for (int i=0;i<12;i++) {
+        for (int j=0;j<16;j++) {
+            if (tile_map->get_cols()[tile_map->get_map()[i*16+j]]==1) {
+                Collision tile_col{Rectangle{static_cast<float>(j*16),static_cast<float>(i*16),16,16},LAYER_0,LAYER_0,true,true,nullptr};
+                tile_map->add_tile_collision(tile_col);
+            }
+        }
+    }
 }

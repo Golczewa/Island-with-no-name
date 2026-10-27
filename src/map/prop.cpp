@@ -10,12 +10,12 @@ Prop::Prop(Vector2 pos,const std::string& sprite_path):position(pos) {
     if (!sprite_path.empty()) {
         sprite=LoadTexture(sprite_path.c_str());
     }
-    CollisionWorld::add_collider(&collision);
+    register_collision();
 }
 
 Prop::~Prop() {
     UnloadTexture(sprite);
-    CollisionWorld::remove_collider(&collision);
+    unregister_collision();
 }
 
 void Prop::draw() {
@@ -24,4 +24,12 @@ void Prop::draw() {
 
 Vector2 Prop::get_position() const {
     return position;
+}
+
+void Prop::register_collision() {
+    CollisionWorld::add_collider(&collision);
+}
+
+void Prop::unregister_collision() {
+    CollisionWorld::remove_collider(&collision);
 }

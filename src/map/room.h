@@ -31,6 +31,8 @@ public:
     void process();
     [[nodiscard]] std::vector<int> get_navigation_path() const;
     [[nodiscard]] int get_id();
+    void register_collisions();
+    void register_tile_collisions() const;
     void cleanup();
     void add_bullet(std::unique_ptr<Bullet> bullet);
     void remove_bullets();
