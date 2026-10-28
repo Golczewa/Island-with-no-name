@@ -39,13 +39,20 @@ void Room::draw() {
 }
 
 void Room::process() {
+    int dead_count=0;
     for (auto& enemy:enemies) {
         enemy->process();
+        if (enemy->is_dead()) {
+            dead_count++;
+        }
     }
     for (auto& bullet:bullets) {
         if (!bullet->is_to_remove()) {
             bullet->process();
         }
+    }
+    if (dead_count==enemies.size()) {
+        cleard=true;
     }
     remove_bullets();
 }
@@ -80,13 +87,17 @@ void Room::remove_bullets() {
     std::erase_if(bullets, [](const auto& b) { return b->is_to_remove(); });
 }
 
+void Room::remove_all_bullets() {
+    bullets.clear();
+}
+
 int Room::get_id() {
     return id;
 }
 
 void Room::cleanup() {
     tile_map->clear_collisions();
-    remove_bullets();
+    remove_all_bullets();
     for (auto& enemy: enemies) {
         enemy->unregister_collision();
     }

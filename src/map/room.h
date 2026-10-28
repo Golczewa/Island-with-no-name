@@ -22,6 +22,7 @@ class Room {
     std::vector<std::unique_ptr<Prop>> props;
     std::vector<std::unique_ptr<Enemy>> enemies;
     std::vector<std::unique_ptr<Bullet>> bullets;
+    bool cleard=false;
 
 public:
     Paths paths;
@@ -36,6 +37,7 @@ public:
     void cleanup();
     void add_bullet(std::unique_ptr<Bullet> bullet);
     void remove_bullets();
+    void remove_all_bullets();
 };
 
 

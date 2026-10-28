@@ -34,6 +34,7 @@ public:
 	void unregister_collision();
 	[[nodiscard]] Vector2 get_middle() const;
 	[[nodiscard]] Vector2 get_position() const;
+	[[nodiscard]] bool is_dead() const;
 };
 
 

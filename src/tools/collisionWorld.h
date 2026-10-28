@@ -30,7 +30,7 @@ struct Collision {
 
 
 class CollisionWorld {
-    static constexpr int max_colliders = 128;
+    static constexpr int max_colliders = 256;
 public:
     inline static std::unordered_set<Collision*> collisions;
     static void add_collider(Collision* collision);

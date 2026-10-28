@@ -43,3 +43,7 @@ void Enemy::register_collision() {
 void Enemy::unregister_collision() {
 	CollisionWorld::remove_collider(&collision);
 }
+
+bool Enemy::is_dead() const {
+	return dead;
+}
