@@ -50,3 +50,8 @@ void Game::change_room(int room_id) {
     curr_room->register_collisions();
 }
 
+void Game::restart() {
+    visited.clear();
+    change_room(1);
+    player->return_to_default_pos();
+}

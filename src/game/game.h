@@ -25,6 +25,7 @@ public:
     void process();
     void draw();
     void change_room(int room_id);
+    void restart();
 };
 
 

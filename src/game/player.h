@@ -17,7 +17,8 @@ class Player:public Body {
     int health=max_health;
     int sword_dmg=2;
     const float middle_offset=8.0;
-    Vector2 position={.x =128,.y = 128};
+    const Vector2 start_pos={.x =128,.y = 128};
+    Vector2 position=start_pos;
     Vector2 velocity={0,0};
     Collision collision={{position.x,position.y,16,16},LAYER_0,LAYER_0,true,true,this};
     Collision weapon_area={{position.x,position.y+16,20,20},LAYER_0,LAYER_0,false,true,this};
@@ -51,6 +52,7 @@ public:
     void teleport_to(Vector2 pos);
     void move_to_room();
     void take_damage(int dmg);
+    void return_to_default_pos();
     [[nodiscard]] Vector2 get_middle() const;
     [[nodiscard]] Vector2 get_position() const;
     [[nodiscard]] float get_health_precent() const;

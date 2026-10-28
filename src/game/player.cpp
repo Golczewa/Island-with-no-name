@@ -231,3 +231,7 @@ void Player::attack() {
 float Player::get_health_precent() const {
     return static_cast<float>(health)/static_cast<float>(max_health);
 }
+
+void Player::return_to_default_pos() {
+    position=start_pos;
+}
