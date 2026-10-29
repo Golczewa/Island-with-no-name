@@ -126,3 +126,7 @@ void Room::register_tile_collisions() const {
         }
     }
 }
+
+bool Room::is_cleard() const {
+    return cleard;
+}

@@ -3,6 +3,7 @@
 //
 
 #include "game.h"
+
 #include "player.h"
 
 Game::Game()
@@ -14,9 +15,22 @@ Game::Game()
 Game::~Game() = default;
 
 void Game::process() {
+    if (finished) {
+        if (IsKeyDown(KEY_R)) {
+            restart();
+        }
+        return;
+    }
     player->process();
     curr_room->process();
     game_ui_->process();
+    bool done=true;
+    for (auto& room: visited) {
+        done=done && room.second->is_cleard();
+    }
+    if (done && visited.size()==map_library.maps.size() ) {
+        finished=done;
+    }
 }
 
 void Game::draw() {

@@ -6,6 +6,7 @@
 #define ISLAND_WITH_NO_NAME_GAME_H
 #include <memory>
 #include  <set>
+
 #include "gameUI.h"
 #include "../map/room.h"
 #include "../map/maps.h"
@@ -18,6 +19,7 @@ class Game {
     std::unique_ptr<GameUI> game_ui_;
     MapData get_map(int room_id);
     std::unordered_map<int, std::unique_ptr<Room>> visited;
+    bool finished=false;
 public:
     Room* curr_room=nullptr;
     Game();

@@ -32,6 +32,7 @@ public:
     void process();
     [[nodiscard]] std::vector<int> get_navigation_path() const;
     [[nodiscard]] int get_id();
+    [[nodiscard]] bool is_cleard() const;
     void register_collisions();
     void register_tile_collisions() const;
     void cleanup();
