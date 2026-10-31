@@ -52,12 +52,11 @@ public:
     void teleport_to(Vector2 pos);
     void move_to_room();
     void take_damage(int dmg);
-    void return_to_default_pos();
     [[nodiscard]] Vector2 get_middle() const;
     [[nodiscard]] Vector2 get_position() const;
     [[nodiscard]] float get_health_precent() const;
     void attack();
-
+    void restart();
 };
 
 

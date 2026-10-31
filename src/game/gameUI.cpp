@@ -13,4 +13,16 @@ void GameUI::process() {
 
 void GameUI::draw() {
     DrawTextureRec(hearth,hearth_rec,hearth_pos,WHITE);
+    if (restart) {
+        DrawText("Press R key to restart", 32, 32, 20, LIGHTGRAY);
+    }
+
+}
+
+void GameUI::hide_restart() {
+    restart=false;
+}
+
+void GameUI::show_restart() {
+    restart=true;
 }

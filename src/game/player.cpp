@@ -232,6 +232,9 @@ float Player::get_health_precent() const {
     return static_cast<float>(health)/static_cast<float>(max_health);
 }
 
-void Player::return_to_default_pos() {
-    position=start_pos;
+void Player::restart() {
+    teleport_to(start_pos);
+    health=max_health;
+    stance=DOWN;
+    attack_timer.stop();
 }

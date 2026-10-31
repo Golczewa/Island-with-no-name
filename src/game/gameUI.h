@@ -13,10 +13,13 @@ class GameUI {
     const Vector2 hearth_pos={8,196};
     Texture2D hearth=LoadTexture("assets/sprites/hearths.png");
     Rectangle hearth_rec={0,0,static_cast<float>(hearth.width),static_cast<float>(hearth.height)};
+    bool restart=false;
 public:
     GameUI(Player* player);
     void process();
     void draw();
+    void show_restart();
+    void hide_restart();
 };
 
 

@@ -16,6 +16,7 @@ Game::~Game() = default;
 
 void Game::process() {
     if (finished) {
+        game_ui_->show_restart();
         if (IsKeyDown(KEY_R)) {
             restart();
         }
@@ -65,7 +66,13 @@ void Game::change_room(int room_id) {
 }
 
 void Game::restart() {
+    if (curr_room) {
+        curr_room->cleanup();
+        curr_room = nullptr;
+    }
     visited.clear();
     change_room(1);
-    player->return_to_default_pos();
+    finished=false;
+    player->restart();
+    game_ui_->hide_restart();
 }
