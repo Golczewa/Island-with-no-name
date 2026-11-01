@@ -17,6 +17,8 @@ class Player:public Body {
     int health=max_health;
     int sword_dmg=2;
     const float middle_offset=8.0;
+    bool dead=false;
+    Color color=WHITE;
     const Vector2 start_pos={.x =128,.y = 128};
     Vector2 position=start_pos;
     Vector2 velocity={0,0};
@@ -25,6 +27,7 @@ class Player:public Body {
     Vector2 slash_position{};
     const int frames_count=14;
     Timer attack_timer;
+    Timer red_timer_;
 
     Texture2D sprite=LoadTexture("assets/sprites/guy.png");
     Rectangle frames={0,0,static_cast<float>(sprite.width)/frames_count,static_cast<float>(sprite.height)};
@@ -55,8 +58,10 @@ public:
     [[nodiscard]] Vector2 get_middle() const;
     [[nodiscard]] Vector2 get_position() const;
     [[nodiscard]] float get_health_precent() const;
+    [[nodiscard]] bool is_dead() const;
     void attack();
     void restart();
+    void flash_red();
 };
 
 

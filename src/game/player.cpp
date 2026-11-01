@@ -41,7 +41,7 @@ Player::~Player() {
 
 void Player::draw() {
     if (!animated_sprite.is_hidden()) {
-        DrawTextureRec(sprite,frames,position,WHITE);
+        DrawTextureRec(sprite,frames,position,color);
     }
     if (!slash.is_hidden()) {
         DrawTextureRec(slash_sprite,slash_rec,slash_position,WHITE);
@@ -49,9 +49,16 @@ void Player::draw() {
 }
 
 void Player::process() {
+    if (dead) {
+        return;
+    }
+    red_timer_.process();
     attack_timer.process();
     if (!attack_timer.is_running()) {
         animated_sprite.show();
+    }
+    if (!red_timer_.is_running()) {
+        color=WHITE;
     }
     move_to_room();
     bool something_pressed=false;
@@ -194,7 +201,11 @@ void Player::move_to_room() {
 
 void Player::take_damage(int dmg) {
     health-=dmg;
-    TraceLog(LOG_INFO,"player took %d damage now he has %d",dmg,health);
+    if (health<=0) {
+        dead=true;
+    }else {
+        flash_red();
+    }
 }
 
 Vector2 Player::get_position() const {
@@ -209,7 +220,6 @@ void Player::attack() {
     if (attack_timer.is_running()) {
         return;
     }
-    TraceLog(LOG_INFO,"weapon_pos_coll: %f %f",weapon_area.shape.x,weapon_area.shape.y);
     attack_timer.start(6.0f/24.0f);
     auto& slash_animation=slash.animations.at("slash");
     slash_animation.curr_frame=slash_animation.begin_frame;
@@ -233,8 +243,18 @@ float Player::get_health_precent() const {
 }
 
 void Player::restart() {
+    dead=false;
     teleport_to(start_pos);
     health=max_health;
     stance=DOWN;
     attack_timer.stop();
+}
+
+bool Player::is_dead() const {
+    return dead;
+}
+
+void Player::flash_red() {
+    color=RED;
+    red_timer_.start(0.1);
 }

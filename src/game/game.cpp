@@ -15,8 +15,13 @@ Game::Game()
 Game::~Game() = default;
 
 void Game::process() {
-    if (finished) {
+    if (finished || player->is_dead()) {
         game_ui_->show_restart();
+        if (finished) {
+            game_ui_->show_victory();
+        }else if (player->is_dead()) {
+            game_ui_->show_dead();
+        }
         if (IsKeyDown(KEY_R)) {
             restart();
         }
@@ -74,5 +79,5 @@ void Game::restart() {
     change_room(1);
     finished=false;
     player->restart();
-    game_ui_->hide_restart();
+    game_ui_->hide_all();
 }

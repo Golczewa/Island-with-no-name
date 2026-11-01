@@ -14,12 +14,16 @@ class GameUI {
     Texture2D hearth=LoadTexture("assets/sprites/hearths.png");
     Rectangle hearth_rec={0,0,static_cast<float>(hearth.width),static_cast<float>(hearth.height)};
     bool restart=false;
+    bool won=false;
+    bool lost=false;
 public:
     GameUI(Player* player);
     void process();
     void draw();
     void show_restart();
-    void hide_restart();
+    void show_victory();
+    void show_dead();
+    void hide_all();
 };
 
 

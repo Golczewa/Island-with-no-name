@@ -14,15 +14,30 @@ void GameUI::process() {
 void GameUI::draw() {
     DrawTextureRec(hearth,hearth_rec,hearth_pos,WHITE);
     if (restart) {
-        DrawText("Press R key to restart", 32, 32, 20, LIGHTGRAY);
+        DrawText("Press R key to restart", 32, 96, 16, ORANGE);
     }
-
+    if (won) {
+        DrawText("YOU WON!", 48, 32, 32, DARKBLUE);
+    }
+    if (lost) {
+        DrawText("YOU DIED!", 48, 32, 32, RED);
+    }
 }
 
-void GameUI::hide_restart() {
+void GameUI::hide_all() {
     restart=false;
+    won=false;
+    lost=false;
 }
 
 void GameUI::show_restart() {
     restart=true;
+}
+
+void GameUI::show_dead() {
+    lost=true;
+}
+
+void GameUI::show_victory() {
+    won=true;
 }
