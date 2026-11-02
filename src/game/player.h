@@ -28,6 +28,7 @@ class Player:public Body {
     const int frames_count=14;
     Timer attack_timer;
     Timer red_timer_;
+    Timer green_timer_;
 
     Texture2D sprite=LoadTexture("assets/sprites/guy.png");
     Rectangle frames={0,0,static_cast<float>(sprite.width)/frames_count,static_cast<float>(sprite.height)};
@@ -62,6 +63,8 @@ public:
     void attack();
     void restart();
     void flash_red();
+    void flash_green();
+    void heal(int amount);
 };
 
 

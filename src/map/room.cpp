@@ -36,6 +36,11 @@ void Room::draw() {
     for (auto& bullet:bullets) {
         bullet->draw();
     }
+    for (auto& heal:heals) {
+        if (!heal->is_to_remove()) {
+            heal->draw();
+        }
+    }
 }
 
 void Room::process() {
@@ -49,6 +54,11 @@ void Room::process() {
     for (auto& bullet:bullets) {
         if (!bullet->is_to_remove()) {
             bullet->process();
+        }
+    }
+    for (auto& heal:heals) {
+        if (!heal->is_to_remove()) {
+            heal->process();
         }
     }
     if (dead_count==enemies.size()) {
@@ -87,6 +97,10 @@ void Room::remove_bullets() {
     std::erase_if(bullets, [](const auto& b) { return b->is_to_remove(); });
 }
 
+void Room::remove_all_heal() {
+    std::erase_if(heals, [](const auto& h) { return h->is_to_remove();});
+}
+
 void Room::remove_all_bullets() {
     bullets.clear();
 }
@@ -104,6 +118,9 @@ void Room::cleanup() {
     for (auto& porp:props) {
         porp->unregister_collision();
     }
+    for (auto& heal:heals) {
+        heal->unregister_collison();
+    }
 }
 
 void Room::register_collisions() {
@@ -113,6 +130,9 @@ void Room::register_collisions() {
     }
     for (auto& porp:props) {
         porp->register_collision();
+    }
+    for (auto& heal:heals) {
+        heal->register_collison();
     }
 }
 
@@ -129,4 +149,8 @@ void Room::register_tile_collisions() const {
 
 bool Room::is_cleard() const {
     return cleard;
+}
+
+void Room::spawn_heal(Vector2 pos) {
+    heals.push_back(std::make_unique<Heal>(pos));
 }

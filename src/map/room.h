@@ -7,6 +7,7 @@
 #include <memory>
 #include <vector>
 
+#include "heal.h"
 #include "maps.h"
 #include "tileMap.h"
 
@@ -22,6 +23,7 @@ class Room {
     std::vector<std::unique_ptr<Prop>> props;
     std::vector<std::unique_ptr<Enemy>> enemies;
     std::vector<std::unique_ptr<Bullet>> bullets;
+    std::vector<std::unique_ptr<Heal>> heals;
     bool cleard=false;
 
 public:
@@ -39,6 +41,8 @@ public:
     void add_bullet(std::unique_ptr<Bullet> bullet);
     void remove_bullets();
     void remove_all_bullets();
+    void remove_all_heal();
+    void spawn_heal(Vector2 pos);
 };
 
 

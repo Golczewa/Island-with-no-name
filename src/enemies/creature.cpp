@@ -63,3 +63,23 @@ void Creature::attack() {
 void Creature::draw() {
     DrawTextureRec(sprite,frames,position,color);
 }
+
+void Creature::take_damage(int dmg) {
+    health-=dmg;
+    if (health<=0) {
+        if (!dead) {
+            drop_heath();
+        }
+        dead=true;
+    }else {
+        flash_red();
+    }
+}
+
+void Creature::drop_heath() {
+    //int r=rand()%4;
+    int r=1;
+    if (r==1) {
+        room->spawn_heal(get_position());
+    }
+}

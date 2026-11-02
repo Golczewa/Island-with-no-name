@@ -29,6 +29,8 @@ public:
     void process() override;
     void attack();
     void draw() override;
+    void take_damage(int dmg) override;
+    void drop_heath();
 };
 
 

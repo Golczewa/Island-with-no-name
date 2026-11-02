@@ -52,6 +52,8 @@ add_executable(island_with_no_name src/main.cpp
         src/enemies/creature.h
         src/game/gameUI.cpp
         src/game/gameUI.h
+        src/map/heal.cpp
+        src/map/heal.h
 )
 
 target_link_libraries(island_with_no_name

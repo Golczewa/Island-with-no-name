@@ -53,11 +53,12 @@ void Player::process() {
         return;
     }
     red_timer_.process();
+    green_timer_.process();
     attack_timer.process();
     if (!attack_timer.is_running()) {
         animated_sprite.show();
     }
-    if (!red_timer_.is_running()) {
+    if (!red_timer_.is_running() && !green_timer_.is_running()) {
         color=WHITE;
     }
     move_to_room();
@@ -257,4 +258,16 @@ bool Player::is_dead() const {
 void Player::flash_red() {
     color=RED;
     red_timer_.start(0.1);
+}
+
+void Player::flash_green() {
+    color=GREEN;
+    green_timer_.start(0.1);
+}
+
+void Player::heal(int amount) {
+    if (health+amount<=6) {
+        health+=amount;
+        flash_green();
+    }
 }

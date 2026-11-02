@@ -27,7 +27,7 @@ protected:
 public:
 	~Enemy() override;
 	virtual void process()=0;
-	void take_damage(int dmg);
+	virtual void take_damage(int dmg);
 	virtual void draw();
 	void flash_red();
 	void register_collision();
