@@ -119,7 +119,7 @@ void Room::cleanup() {
         porp->unregister_collision();
     }
     for (auto& heal:heals) {
-        heal->unregister_collison();
+        heal->unregister_collision();
     }
 }
 
@@ -132,7 +132,7 @@ void Room::register_collisions() {
         porp->register_collision();
     }
     for (auto& heal:heals) {
-        heal->register_collison();
+        heal->register_collision();
     }
 }
 

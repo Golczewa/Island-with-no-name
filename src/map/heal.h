@@ -24,8 +24,8 @@ public:
     ~Heal() override;
     void draw();
     void process();
-    void register_collison();
-    void unregister_collison();
+    void register_collision();
+    void unregister_collision();
     [[nodiscard]] bool is_to_remove() const;
 };
 

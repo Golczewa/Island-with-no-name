@@ -7,13 +7,13 @@
 
 Heal::Heal(Vector2 pos):position(pos) {
     collision={{pos.x+collision_offset.x,pos.y+collision_offset.y,2,2},LAYER_0,LAYER_0,false,true};
-    register_collison();
+    register_collision();
     timer.start(1);
 }
 
 Heal::~Heal() {
     UnloadTexture(sprite);
-    unregister_collison();
+    unregister_collision();
 }
 
 void Heal::draw() {
@@ -34,11 +34,11 @@ void Heal::process() {
     }
 }
 
-void Heal::register_collison() {
+void Heal::register_collision() {
     CollisionWorld::add_collider(&collision);
 }
 
-void Heal::unregister_collison() {
+void Heal::unregister_collision() {
     CollisionWorld::remove_collider(&collision);
 }
 
