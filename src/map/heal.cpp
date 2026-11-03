@@ -6,8 +6,9 @@
 
 
 Heal::Heal(Vector2 pos):position(pos) {
-    collision={{pos.x,pos.y,8,8},LAYER_0,LAYER_0,false,true};
+    collision={{pos.x+collision_offset.x,pos.y+collision_offset.y,2,2},LAYER_0,LAYER_0,false,true};
     register_collison();
+    timer.start(1);
 }
 
 Heal::~Heal() {
@@ -20,6 +21,10 @@ void Heal::draw() {
 }
 
 void Heal::process() {
+    timer.process();
+    if (timer.is_running()) {
+        return;
+    }
     for (auto& cols:CollisionWorld::get_colliders(&collision)) {
         auto player=dynamic_cast<Player*>(cols->owner);
         if (player) {

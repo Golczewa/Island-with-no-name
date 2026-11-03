@@ -77,8 +77,7 @@ void Creature::take_damage(int dmg) {
 }
 
 void Creature::drop_heath() {
-    //int r=rand()%4;
-    int r=1;
+    int r=rand()%4;
     if (r==1) {
         room->spawn_heal(get_position());
     }

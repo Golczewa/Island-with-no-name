@@ -22,7 +22,8 @@ class Player:public Body {
     const Vector2 start_pos={.x =128,.y = 128};
     Vector2 position=start_pos;
     Vector2 velocity={0,0};
-    Collision collision={{position.x,position.y,16,16},LAYER_0,LAYER_0,true,true,this};
+    const Vector2 collision_offset={3,3};
+    Collision collision={{position.x+collision_offset.x,position.y+collision_offset.y,10,10},LAYER_0,LAYER_0,true,true,this};
     Collision weapon_area={{position.x,position.y+16,20,20},LAYER_0,LAYER_0,false,true,this};
     Vector2 slash_position{};
     const int frames_count=14;

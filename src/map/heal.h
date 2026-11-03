@@ -14,8 +14,10 @@ class Heal:public Body{
     int heal_amount=2;
     Vector2 position{};
     Texture2D sprite=LoadTexture("assets/sprites/helth.png");
+    const Vector2 collision_offset={7,7};
     Collision collision={};
     bool to_remove=false;
+    Timer timer;
 
 public:
     Heal(Vector2 pos);

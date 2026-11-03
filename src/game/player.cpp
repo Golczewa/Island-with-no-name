@@ -110,8 +110,8 @@ void Player::process() {
 
     }
     velocity = CollisionWorld::move_and_slide(&collision, velocity,speed);
-    position.x = collision.shape.x;
-    position.y = collision.shape.y;
+    position.x = collision.shape.x-collision_offset.x;
+    position.y = collision.shape.y-collision_offset.y;
     switch (stance) {
         case UP:
             if (attack_timer.is_running()) {
@@ -157,8 +157,8 @@ void Player::process() {
 void Player::teleport_to(Vector2 pos) {
     velocity.x=0;
     velocity.y=0;
-    collision.shape.x=pos.x;
-    collision.shape.y=pos.y;
+    collision.shape.x=pos.x+collision_offset.x;
+    collision.shape.y=pos.y+collision_offset.y;
 }
 
 void Player::move_to_room() {
@@ -257,12 +257,12 @@ bool Player::is_dead() const {
 
 void Player::flash_red() {
     color=RED;
-    red_timer_.start(0.1);
+    red_timer_.start(0.3);
 }
 
 void Player::flash_green() {
     color=GREEN;
-    green_timer_.start(0.1);
+    green_timer_.start(0.3);
 }
 
 void Player::heal(int amount) {
