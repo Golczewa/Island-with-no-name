@@ -1,5 +1,7 @@
 # Island with no name
 
+![Gameplay showcase](assets/showcase_with_no_name.gif)
+
 **Island with no name** is a small 2D action-adventure prototype built with C++ and [raylib](https://www.raylib.com/). Explore a connected island, fight its creatures, and clear every room to win.
 
 ## Features
@@ -36,7 +38,7 @@ cmake --build build
 Run the game from the project root so it can find the files in `assets/`:
 
 ```sh
-./build/bin/island_with_no_name
+./island_with_no_name
 ```
 
 The game opens in a window. Close the window to exit.
