@@ -44,3 +44,7 @@ The game opens in a window. Close the window to exit.
 ## Credits
 
 - [CRT shader](https://rickcarvalho.itch.io/crt-shader-for-raylib-go).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
